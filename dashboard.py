@@ -165,9 +165,52 @@ st.set_page_config(
     initial_sidebar_state="expanded",
 )
 
+# Bidirectional Theme Synchronizer: Detects Streamlit Dark/Light mode and sets data-theme on html & stApp
+components.html(
+    """
+    <script>
+      (function() {
+        function syncTheme() {
+          try {
+            const doc = window.parent.document;
+            const app = doc.querySelector('.stApp');
+            if (!app) return;
+            
+            // Check computed background color of stApp to detect Dark Mode
+            const computedBg = window.parent.getComputedStyle(app).backgroundColor;
+            let isDark = false;
+            if (computedBg && computedBg.startsWith('rgb')) {
+              const m = computedBg.match(/\\d+/g);
+              if (m && m.length >= 3) {
+                const brightness = (parseInt(m[0]) * 299 + parseInt(m[1]) * 587 + parseInt(m[2]) * 114) / 1000;
+                isDark = brightness < 128;
+              }
+            } else if (window.parent.matchMedia) {
+              isDark = window.parent.matchMedia('(prefers-color-scheme: dark)').matches;
+            }
+
+            const themeVal = isDark ? 'dark' : 'light';
+            if (doc.documentElement.getAttribute('data-theme') !== themeVal) {
+              doc.documentElement.setAttribute('data-theme', themeVal);
+            }
+            if (app.getAttribute('data-theme') !== themeVal) {
+              app.setAttribute('data-theme', themeVal);
+            }
+          } catch(e) {}
+        }
+        syncTheme();
+        setInterval(syncTheme, 400);
+      })();
+    </script>
+    """,
+    height=0,
+    width=0,
+)
+
 # Custom CSS with full dark/light theme adaptivity, White/Green/Blue Municipal Theme
 st.markdown(clean_html("""
 <style>
+  /* Light Mode Palette (Default) */
   :root {
       --civic-blue: #1d4ed8;
       --civic-blue-hover: #1e40af;
@@ -190,6 +233,92 @@ st.markdown(clean_html("""
       --civic-step-pending-bg: rgba(241, 245, 249, 0.85);
       --civic-step-pending-text: #475569;
       --civic-review-bg: linear-gradient(135deg, rgba(29, 78, 216, 0.05) 0%, rgba(5, 150, 105, 0.05) 100%);
+      --civic-sidebar-bg: #f8fafc;
+      --civic-sidebar-card: #ffffff;
+      --civic-sidebar-card-border: rgba(37, 99, 235, 0.20);
+      --civic-sidebar-text: #0f172a;
+      --civic-sidebar-subtext: #475569;
+      --civic-sidebar-hover-bg: #eff6ff;
+      --civic-sidebar-hover-border: #1d4ed8;
+      --civic-sidebar-hover-text: #1d4ed8;
+      --civic-sidebar-active-bg: linear-gradient(135deg, rgba(29, 78, 216, 0.10) 0%, rgba(5, 150, 105, 0.08) 100%);
+      --civic-sidebar-active-border: #1d4ed8;
+      --civic-sidebar-active-text: #1d4ed8;
+  }
+
+  /* Dark Mode Palette (OS preference + Streamlit dark setting) */
+  @media (prefers-color-scheme: dark) {
+      :root {
+          --civic-blue: #3b82f6;
+          --civic-blue-hover: #60a5fa;
+          --civic-blue-light: rgba(59, 130, 246, 0.15);
+          --civic-green: #10b981;
+          --civic-green-hover: #34d399;
+          --civic-green-light: rgba(16, 185, 129, 0.15);
+          --civic-white: #0e1117;
+          --civic-card-bg: #1e293b;
+          --civic-card-border: rgba(59, 130, 246, 0.28);
+          --civic-card-shadow: 0 4px 18px rgba(0, 0, 0, 0.40);
+          --civic-text-title: #f8fafc;
+          --civic-text-body: #e2e8f0;
+          --civic-text-sub: #94a3b8;
+          --civic-text-label: #94a3b8;
+          --civic-desc-bg: #0f172a;
+          --civic-desc-border: rgba(59, 130, 246, 0.25);
+          --civic-desc-text: #f8fafc;
+          --civic-divider: rgba(148, 163, 184, 0.18);
+          --civic-step-pending-bg: #1e293b;
+          --civic-step-pending-text: #94a3b8;
+          --civic-review-bg: linear-gradient(135deg, rgba(29, 78, 216, 0.18) 0%, rgba(5, 150, 105, 0.12) 100%);
+          --civic-sidebar-bg: #0e1117;
+          --civic-sidebar-card: #1e293b;
+          --civic-sidebar-card-border: rgba(59, 130, 246, 0.30);
+          --civic-sidebar-text: #f8fafc;
+          --civic-sidebar-subtext: #cbd5e1;
+          --civic-sidebar-hover-bg: #1e3a5f;
+          --civic-sidebar-hover-border: #3b82f6;
+          --civic-sidebar-hover-text: #93c5fd;
+          --civic-sidebar-active-bg: linear-gradient(135deg, rgba(29, 78, 216, 0.30) 0%, rgba(5, 150, 105, 0.20) 100%);
+          --civic-sidebar-active-border: #3b82f6;
+          --civic-sidebar-active-text: #60a5fa;
+      }
+  }
+
+  html[data-theme="dark"],
+  .stApp[data-theme="dark"],
+  [data-theme="dark"] {
+      --civic-blue: #3b82f6;
+      --civic-blue-hover: #60a5fa;
+      --civic-blue-light: rgba(59, 130, 246, 0.15);
+      --civic-green: #10b981;
+      --civic-green-hover: #34d399;
+      --civic-green-light: rgba(16, 185, 129, 0.15);
+      --civic-white: #0e1117;
+      --civic-card-bg: #1e293b;
+      --civic-card-border: rgba(59, 130, 246, 0.28);
+      --civic-card-shadow: 0 4px 18px rgba(0, 0, 0, 0.40);
+      --civic-text-title: #f8fafc;
+      --civic-text-body: #e2e8f0;
+      --civic-text-sub: #94a3b8;
+      --civic-text-label: #94a3b8;
+      --civic-desc-bg: #0f172a;
+      --civic-desc-border: rgba(59, 130, 246, 0.25);
+      --civic-desc-text: #f8fafc;
+      --civic-divider: rgba(148, 163, 184, 0.18);
+      --civic-step-pending-bg: #1e293b;
+      --civic-step-pending-text: #94a3b8;
+      --civic-review-bg: linear-gradient(135deg, rgba(29, 78, 216, 0.18) 0%, rgba(5, 150, 105, 0.12) 100%);
+      --civic-sidebar-bg: #0e1117;
+      --civic-sidebar-card: #1e293b;
+      --civic-sidebar-card-border: rgba(59, 130, 246, 0.30);
+      --civic-sidebar-text: #f8fafc;
+      --civic-sidebar-subtext: #cbd5e1;
+      --civic-sidebar-hover-bg: #1e3a5f;
+      --civic-sidebar-hover-border: #3b82f6;
+      --civic-sidebar-hover-text: #93c5fd;
+      --civic-sidebar-active-bg: linear-gradient(135deg, rgba(29, 78, 216, 0.30) 0%, rgba(5, 150, 105, 0.20) 100%);
+      --civic-sidebar-active-border: #3b82f6;
+      --civic-sidebar-active-text: #60a5fa;
   }
 
   html {
@@ -226,46 +355,80 @@ st.markdown(clean_html("""
       box-shadow: 0 6px 20px rgba(5, 150, 105, 0.35) !important;
   }
 
-  /* Secondary & Action Buttons: Clean White with Civic Blue border & text */
+  /* Secondary & Action Buttons */
   button:not([kind="primary"]) {
-      background: #ffffff !important;
-      border: 1.5px solid rgba(37, 99, 235, 0.30) !important;
-      color: #1d4ed8 !important;
+      background: var(--civic-card-bg) !important;
+      border: 1.5px solid var(--civic-card-border) !important;
+      color: var(--civic-blue) !important;
       font-weight: 600 !important;
       border-radius: 10px !important;
       padding: 0.55rem 1.25rem !important;
       transition: all 0.2s ease !important;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04) !important;
+      box-shadow: var(--civic-card-shadow) !important;
   }
   button:not([kind="primary"]) p {
-      color: #1d4ed8 !important;
+      color: var(--civic-blue) !important;
       font-weight: 600 !important;
   }
   button:not([kind="primary"]):hover {
-      border-color: #1d4ed8 !important;
-      background: #eff6ff !important;
-      color: #1d4ed8 !important;
+      border-color: var(--civic-blue-hover) !important;
+      background: var(--civic-blue-light) !important;
+      color: var(--civic-blue-hover) !important;
       transform: translateY(-2px) !important;
-      box-shadow: 0 4px 14px rgba(29, 78, 216, 0.18) !important;
   }
   button:not([kind="primary"]):hover p {
-      color: #1d4ed8 !important;
+      color: var(--civic-blue-hover) !important;
       font-weight: 700 !important;
   }
 
-  /* Left Sidebar: Clean Municipal Styling */
+  /* Left Sidebar: Theme-Adaptive Municipal Styling */
   [data-testid="stSidebar"] {
-      background-color: #f8fafc !important;
+      background-color: var(--civic-sidebar-bg) !important;
+      border-right: 1px solid var(--civic-divider) !important;
   }
+
+  /* Sidebar Top Branding & Captions (Always 100% visible in both light & dark mode) */
+  .civic-sidebar-brand {
+      padding: 6px 0 8px 0;
+      margin-bottom: 4px;
+  }
+  .civic-brand-title {
+      font-size: 1.55rem;
+      font-weight: 800;
+      color: var(--civic-sidebar-text) !important;
+      letter-spacing: -0.02em;
+      line-height: 1.25;
+  }
+  .civic-brand-subtitle {
+      font-size: 0.82rem;
+      font-weight: 500;
+      color: var(--civic-sidebar-subtext) !important;
+      margin-top: 4px;
+      line-height: 1.35;
+  }
+  [data-testid="stSidebar"] h1,
+  [data-testid="stSidebar"] h2,
+  [data-testid="stSidebar"] h3 {
+      color: var(--civic-sidebar-text) !important;
+      font-weight: 800 !important;
+      letter-spacing: -0.02em !important;
+  }
+  [data-testid="stSidebar"] p,
+  [data-testid="stSidebar"] span,
+  [data-testid="stSidebar"] [data-testid="stCaptionContainer"] p,
+  [data-testid="stSidebar"] [data-testid="stMarkdownContainer"] p {
+      color: var(--civic-sidebar-subtext) !important;
+  }
+
   [data-testid="stSidebar"] [data-testid="stRadio"] > div {
       gap: 12px;
   }
   [data-testid="stSidebar"] [data-testid="stRadio"] label {
-      background: #ffffff !important;
-      border: 1.5px solid rgba(37, 99, 235, 0.20) !important;
+      background: var(--civic-sidebar-card) !important;
+      border: 1.5px solid var(--civic-sidebar-card-border) !important;
       border-radius: 12px !important;
       padding: 12px 16px !important;
-      color: #0f172a !important;
+      color: var(--civic-sidebar-text) !important;
       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04) !important;
       transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
       cursor: pointer !important;
@@ -275,39 +438,56 @@ st.markdown(clean_html("""
   [data-testid="stSidebar"] [data-testid="stRadio"] label p,
   [data-testid="stSidebar"] [data-testid="stRadio"] label span,
   [data-testid="stSidebar"] [data-testid="stRadio"] label div {
-      color: #0f172a !important;
+      color: var(--civic-sidebar-text) !important;
       font-weight: 600 !important;
   }
-  /* Left Sidebar Navigation HOVER: Ice Blue background with Deep Civic Blue text */
+  
+  /* Left Sidebar Navigation HOVER */
   [data-testid="stSidebar"] [data-testid="stRadio"] label:hover {
-      background: #eff6ff !important;
-      border-color: #1d4ed8 !important;
-      color: #1d4ed8 !important;
+      background: var(--civic-sidebar-hover-bg) !important;
+      border-color: var(--civic-sidebar-hover-border) !important;
+      color: var(--civic-sidebar-hover-text) !important;
       transform: translateX(4px) !important;
       box-shadow: 0 4px 16px rgba(29, 78, 216, 0.18) !important;
   }
   [data-testid="stSidebar"] [data-testid="stRadio"] label:hover p,
   [data-testid="stSidebar"] [data-testid="stRadio"] label:hover span,
   [data-testid="stSidebar"] [data-testid="stRadio"] label:hover div {
-      color: #1d4ed8 !important;
+      color: var(--civic-sidebar-hover-text) !important;
       font-weight: 700 !important;
   }
-  /* Left Sidebar Navigation ACTIVE: Civic gradient tint with bold civic blue border & text */
+  
+  /* Left Sidebar Navigation ACTIVE */
   [data-testid="stSidebar"] [data-testid="stRadio"] label:has(input:checked) {
-      background: linear-gradient(135deg, rgba(29, 78, 216, 0.10) 0%, rgba(5, 150, 105, 0.08) 100%) !important;
-      border: 2px solid #1d4ed8 !important;
+      background: var(--civic-sidebar-active-bg) !important;
+      border: 2px solid var(--civic-sidebar-active-border) !important;
       box-shadow: 0 4px 14px rgba(29, 78, 216, 0.15) !important;
   }
   [data-testid="stSidebar"] [data-testid="stRadio"] label:has(input:checked) p,
   [data-testid="stSidebar"] [data-testid="stRadio"] label:has(input:checked) span {
-      color: #1d4ed8 !important;
+      color: var(--civic-sidebar-active-text) !important;
       font-weight: 700 !important;
+  }
+
+  /* Expander inside Sidebar */
+  [data-testid="stSidebar"] [data-testid="stExpander"] {
+      background: var(--civic-sidebar-card) !important;
+      border: 1.5px solid var(--civic-sidebar-card-border) !important;
+      border-radius: 12px !important;
+  }
+  [data-testid="stSidebar"] [data-testid="stExpander"] summary p,
+  [data-testid="stSidebar"] [data-testid="stExpander"] summary span {
+      color: var(--civic-sidebar-text) !important;
+      font-weight: 600 !important;
+  }
+  [data-testid="stSidebar"] [data-testid="stExpander"] [data-testid="stExpanderDetails"] {
+      background: var(--civic-sidebar-card) !important;
   }
 
   /* Sidebar Action / Logout Button */
   [data-testid="stSidebar"] button {
-      background: #ffffff !important;
-      border: 1.5px solid rgba(220, 38, 38, 0.35) !important;
+      background: var(--civic-sidebar-card) !important;
+      border: 1.5px solid rgba(220, 38, 38, 0.40) !important;
       color: #dc2626 !important;
       font-weight: 600 !important;
       border-radius: 10px !important;
@@ -319,37 +499,35 @@ st.markdown(clean_html("""
       font-weight: 600 !important;
   }
   [data-testid="stSidebar"] button:hover {
-      background: #fef2f2 !important;
+      background: rgba(220, 38, 38, 0.12) !important;
       border-color: #dc2626 !important;
       color: #b91c1c !important;
       transform: translateY(-1px) !important;
-      box-shadow: 0 4px 12px rgba(220, 38, 38, 0.15) !important;
   }
   [data-testid="stSidebar"] button:hover p {
       color: #b91c1c !important;
   }
 
-  /* Metric KPI Cards with Top Civic Blue/Green Accent */
+  /* Metric KPI Cards with Top Accent */
   [data-testid="stMetric"] {
-      background: #ffffff !important;
-      border: 1.5px solid rgba(37, 99, 235, 0.20) !important;
-      border-top: 4px solid #2563eb !important;
+      background: var(--civic-card-bg) !important;
+      border: 1.5px solid var(--civic-card-border) !important;
+      border-top: 4px solid var(--civic-blue) !important;
       padding: 16px 20px;
       border-radius: 14px;
-      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.04) !important;
+      box-shadow: var(--civic-card-shadow) !important;
       transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
   }
   [data-testid="stMetric"]:hover {
       transform: translateY(-4px) !important;
-      border-top-color: #059669 !important;
-      box-shadow: 0 10px 24px -4px rgba(5, 150, 105, 0.20) !important;
+      border-top-color: var(--civic-green) !important;
   }
   [data-testid="stMetric"] [data-testid="stMetricLabel"] {
-      color: #475569 !important;
+      color: var(--civic-text-sub) !important;
       font-weight: 600 !important;
   }
   [data-testid="stMetric"] [data-testid="stMetricValue"] {
-      color: #0f172a !important;
+      color: var(--civic-text-title) !important;
       font-weight: 700 !important;
   }
 
@@ -359,8 +537,8 @@ st.markdown(clean_html("""
       grid-template-columns: repeat(4, 1fr);
       gap: 12px;
       margin-bottom: 24px;
-      background: linear-gradient(135deg, rgba(29, 78, 216, 0.06) 0%, rgba(5, 150, 105, 0.06) 100%);
-      border: 1.5px solid rgba(37, 99, 235, 0.25);
+      background: linear-gradient(135deg, rgba(29, 78, 216, 0.08) 0%, rgba(5, 150, 105, 0.08) 100%);
+      border: 1.5px solid var(--civic-card-border);
       border-radius: 16px;
       padding: 14px;
   }
@@ -387,13 +565,13 @@ st.markdown(clean_html("""
       box-shadow: 0 4px 14px rgba(5, 150, 105, 0.25);
   }
   .step-card.pending {
-      background: #f8fafc;
-      color: #475569;
-      border: 1.5px dashed rgba(148, 163, 184, 0.45);
+      background: var(--civic-step-pending-bg);
+      color: var(--civic-step-pending-text);
+      border: 1.5px dashed var(--civic-card-border);
   }
   .step-card.pending .step-num {
-      background: rgba(100, 116, 139, 0.15);
-      color: #475569;
+      background: rgba(100, 116, 139, 0.20);
+      color: var(--civic-step-pending-text);
   }
   .step-num {
       width: 26px;
@@ -410,82 +588,87 @@ st.markdown(clean_html("""
   /* Preset Location Buttons as Interactive Badges */
   div[data-testid="stHorizontalBlock"] button {
       border-radius: 10px;
-      border: 1.5px solid rgba(37, 99, 235, 0.25) !important;
-      background: #ffffff !important;
-      color: #1d4ed8 !important;
+      border: 1.5px solid var(--civic-card-border) !important;
+      background: var(--civic-card-bg) !important;
+      color: var(--civic-blue) !important;
       transition: all 0.2s ease !important;
       font-weight: 500;
   }
   div[data-testid="stHorizontalBlock"] button p {
-      color: #1d4ed8 !important;
+      color: var(--civic-blue) !important;
   }
   div[data-testid="stHorizontalBlock"] button:hover {
-      border-color: #059669 !important;
-      background: #ecfdf5 !important;
-      color: #059669 !important;
+      border-color: var(--civic-green) !important;
+      background: var(--civic-green-light) !important;
+      color: var(--civic-green) !important;
       transform: translateY(-2px);
-      box-shadow: 0 6px 16px rgba(5, 150, 105, 0.20);
   }
   div[data-testid="stHorizontalBlock"] button:hover p {
-      color: #059669 !important;
+      color: var(--civic-green) !important;
   }
 
   /* Officer Section Switcher horizontal radio pills */
   div[data-testid="stRadio"]:has(input[name="officer_section_view"]) label {
-      background: #ffffff !important;
-      border: 1.5px solid rgba(37, 99, 235, 0.22) !important;
+      background: var(--civic-card-bg) !important;
+      border: 1.5px solid var(--civic-card-border) !important;
       border-radius: 20px;
       padding: 8px 18px;
       font-weight: 600;
-      color: #0f172a !important;
+      color: var(--civic-text-title) !important;
       box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
   }
   div[data-testid="stRadio"]:has(input[name="officer_section_view"]) label p {
-      color: #0f172a !important;
+      color: var(--civic-text-title) !important;
       font-weight: 600 !important;
   }
   div[data-testid="stRadio"]:has(input[name="officer_section_view"]) label:hover {
-      border-color: #059669 !important;
-      background: #ecfdf5 !important;
-      color: #059669 !important;
+      border-color: var(--civic-green) !important;
+      background: var(--civic-green-light) !important;
+      color: var(--civic-green) !important;
   }
   div[data-testid="stRadio"]:has(input[name="officer_section_view"]) label:hover p {
-      color: #059669 !important;
+      color: var(--civic-green) !important;
   }
   div[data-testid="stRadio"]:has(input[name="officer_section_view"]) label:has(input:checked) {
-      background: linear-gradient(135deg, rgba(29, 78, 216, 0.10), rgba(5, 150, 105, 0.08)) !important;
-      border: 2px solid #059669 !important;
+      background: linear-gradient(135deg, rgba(29, 78, 216, 0.15), rgba(5, 150, 105, 0.12)) !important;
+      border: 2px solid var(--civic-green) !important;
   }
   div[data-testid="stRadio"]:has(input[name="officer_section_view"]) label:has(input:checked) p {
-      color: #059669 !important;
+      color: var(--civic-green) !important;
       font-weight: 700 !important;
   }
 
   /* Pre-submission review summary card */
   .review-summary-card {
-      background: linear-gradient(135deg, rgba(29, 78, 216, 0.05) 0%, rgba(5, 150, 105, 0.05) 100%);
-      border: 1.5px solid rgba(37, 99, 235, 0.25);
+      background: var(--civic-review-bg);
+      border: 1.5px solid var(--civic-card-border);
       border-left: 5px solid #059669;
       border-radius: 14px;
       padding: 18px 22px;
       margin: 16px 0;
-      color: #1e293b;
-      box-shadow: 0 4px 16px rgba(0,0,0,0.03);
+      color: var(--civic-text-body);
+      box-shadow: var(--civic-card-shadow);
   }
 
   /* Card boxes for intake steps */
   .intake-box {
-      background: #ffffff !important;
-      border: 1.5px solid rgba(37, 99, 235, 0.20) !important;
+      background: var(--civic-card-bg) !important;
+      border: 1.5px solid var(--civic-card-border) !important;
       border-radius: 14px;
       padding: 20px 22px;
       margin-bottom: 20px;
-      box-shadow: 0 4px 18px rgba(0, 0, 0, 0.04);
+      box-shadow: var(--civic-card-shadow);
       transition: all 0.25s ease;
+      color: var(--civic-text-body);
   }
   .intake-box:hover {
-      border-color: #2563eb;
-      box-shadow: 0 6px 20px rgba(37, 99, 235, 0.12);
+      border-color: var(--civic-blue);
+  }
+  .intake-box h1, .intake-box h2, .intake-box h3, .intake-box h4 {
+      color: var(--civic-text-title) !important;
+  }
+  .intake-box p, .intake-box span, .intake-box div {
+      color: var(--civic-text-body);
   }
   
   .ticket-box {
@@ -2596,8 +2779,15 @@ def show_track_complaint():
 # SIDEBAR NAVIGATION  (Role-Based)
 # ==========================================
 with st.sidebar:
-    st.markdown("# 🏙️ CivicFusion AI")
-    st.caption("Multimodal Municipal Intelligence System")
+    st.markdown(
+        """
+        <div class="civic-sidebar-brand">
+          <div class="civic-brand-title">🏙️ CivicFusion AI</div>
+          <div class="civic-brand-subtitle">Multimodal Municipal Intelligence System</div>
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
     st.divider()
 
     # --- Role badge ---
