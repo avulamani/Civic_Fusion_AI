@@ -165,121 +165,43 @@ st.set_page_config(
     initial_sidebar_state="expanded",
 )
 
-# Bidirectional Theme Synchronizer: Detects Streamlit Dark/Light mode and sets data-theme on html & stApp
-components.html(
-    """
-    <script>
-      (function() {
-        function syncTheme() {
-          try {
-            const doc = window.parent.document;
-            const app = doc.querySelector('.stApp');
-            if (!app) return;
-            
-            // Check computed background color of stApp to detect Dark Mode
-            const computedBg = window.parent.getComputedStyle(app).backgroundColor;
-            let isDark = false;
-            if (computedBg && computedBg.startsWith('rgb')) {
-              const m = computedBg.match(/\\d+/g);
-              if (m && m.length >= 3) {
-                const brightness = (parseInt(m[0]) * 299 + parseInt(m[1]) * 587 + parseInt(m[2]) * 114) / 1000;
-                isDark = brightness < 128;
-              }
-            } else if (window.parent.matchMedia) {
-              isDark = window.parent.matchMedia('(prefers-color-scheme: dark)').matches;
-            }
-
-            const themeVal = isDark ? 'dark' : 'light';
-            if (doc.documentElement.getAttribute('data-theme') !== themeVal) {
-              doc.documentElement.setAttribute('data-theme', themeVal);
-            }
-            if (app.getAttribute('data-theme') !== themeVal) {
-              app.setAttribute('data-theme', themeVal);
-            }
-          } catch(e) {}
-        }
-        syncTheme();
-        setInterval(syncTheme, 400);
-      })();
-    </script>
-    """,
-    height=0,
-    width=0,
-)
-
-# Custom CSS with full dark/light theme adaptivity, White/Green/Blue Municipal Theme
+# Custom CSS with Clean, High-Contrast Municipal Light Theme
 st.markdown(clean_html("""
 <style>
-  /* Base Municipal Theme Variables directly bound to Streamlit Theme Variables */
+  /* Clean, High-Contrast Municipal Light Theme Palette */
   :root, .stApp {
       --civic-blue: #2563eb;
       --civic-blue-hover: #1d4ed8;
-      --civic-blue-light: rgba(37, 99, 235, 0.10);
+      --civic-blue-light: #eff6ff;
       --civic-green: #059669;
       --civic-green-hover: #047857;
-      --civic-green-light: rgba(16, 185, 129, 0.10);
+      --civic-green-light: #ecfdf5;
       --civic-white: #ffffff;
-      --civic-card-bg: var(--background-color, #ffffff);
-      --civic-card-border: rgba(37, 99, 235, 0.22);
-      --civic-card-shadow: 0 4px 18px rgba(0, 0, 0, 0.06);
-      --civic-text-title: var(--text-color, #0f172a);
-      --civic-text-body: var(--text-color, #1e293b);
-      --civic-text-sub: var(--text-color, #64748b);
+      --civic-card-bg: #ffffff;
+      --civic-card-border: rgba(37, 99, 235, 0.20);
+      --civic-card-shadow: 0 4px 18px rgba(37, 99, 235, 0.06);
+      --civic-text-title: #0f172a;
+      --civic-text-body: #1e293b;
+      --civic-text-sub: #475569;
       --civic-text-label: #64748b;
-      --civic-desc-bg: rgba(37, 99, 235, 0.06);
-      --civic-desc-border: rgba(37, 99, 235, 0.20);
-      --civic-desc-text: var(--text-color, #0f172a);
+      --civic-desc-bg: #f8fafc;
+      --civic-desc-border: rgba(37, 99, 235, 0.18);
+      --civic-desc-text: #0f172a;
       --civic-divider: rgba(148, 163, 184, 0.22);
-      --civic-step-pending-bg: rgba(241, 245, 249, 0.85);
+      --civic-step-pending-bg: #ffffff;
       --civic-step-pending-text: #475569;
-      --civic-review-bg: linear-gradient(135deg, rgba(37, 99, 235, 0.08) 0%, rgba(16, 185, 129, 0.08) 100%);
-      --civic-sidebar-bg: var(--secondary-background-color, #f8fafc);
-      --civic-sidebar-card: var(--background-color, #ffffff);
-      --civic-sidebar-card-border: rgba(37, 99, 235, 0.22);
-      --civic-sidebar-text: var(--text-color, #0f172a);
-      --civic-sidebar-subtext: var(--text-color, #475569);
-      --civic-sidebar-hover-bg: rgba(37, 99, 235, 0.12);
+      --civic-review-bg: #f8fafc;
+      --civic-sidebar-bg: #f8fafc;
+      --civic-sidebar-card: #ffffff;
+      --civic-sidebar-card-border: rgba(37, 99, 235, 0.20);
+      --civic-sidebar-text: #0f172a;
+      --civic-sidebar-subtext: #475569;
+      --civic-sidebar-hover-bg: #eff6ff;
       --civic-sidebar-hover-border: #2563eb;
       --civic-sidebar-hover-text: #2563eb;
-      --civic-sidebar-active-bg: linear-gradient(135deg, rgba(37, 99, 235, 0.20) 0%, rgba(16, 185, 129, 0.15) 100%);
+      --civic-sidebar-active-bg: linear-gradient(135deg, rgba(37, 99, 235, 0.12) 0%, rgba(16, 185, 129, 0.08) 100%);
       --civic-sidebar-active-border: #2563eb;
       --civic-sidebar-active-text: #2563eb;
-  }
-
-  /* When Streamlit or the user environment is in Dark Mode */
-  @media (prefers-color-scheme: dark) {
-      :root, .stApp {
-          --civic-blue: #3b82f6;
-          --civic-blue-hover: #60a5fa;
-          --civic-blue-light: rgba(59, 130, 246, 0.15);
-          --civic-green: #10b981;
-          --civic-green-hover: #34d399;
-          --civic-green-light: rgba(16, 185, 129, 0.15);
-          --civic-card-border: rgba(59, 130, 246, 0.30);
-          --civic-card-shadow: 0 4px 18px rgba(0, 0, 0, 0.40);
-          --civic-desc-bg: rgba(37, 99, 235, 0.12);
-          --civic-desc-border: rgba(59, 130, 246, 0.30);
-          --civic-review-bg: linear-gradient(135deg, rgba(37, 99, 235, 0.20) 0%, rgba(16, 185, 129, 0.15) 100%);
-          --civic-sidebar-active-text: #60a5fa;
-      }
-  }
-
-  /* Support Streamlit data-theme="dark" attribute if present */
-  html[data-theme="dark"],
-  .stApp[data-theme="dark"],
-  [data-theme="dark"] {
-      --civic-blue: #3b82f6;
-      --civic-blue-hover: #60a5fa;
-      --civic-blue-light: rgba(59, 130, 246, 0.15);
-      --civic-green: #10b981;
-      --civic-green-hover: #34d399;
-      --civic-green-light: rgba(16, 185, 129, 0.15);
-      --civic-card-border: rgba(59, 130, 246, 0.30);
-      --civic-card-shadow: 0 4px 18px rgba(0, 0, 0, 0.40);
-      --civic-desc-bg: rgba(37, 99, 235, 0.12);
-      --civic-desc-border: rgba(59, 130, 246, 0.30);
-      --civic-review-bg: linear-gradient(135deg, rgba(37, 99, 235, 0.20) 0%, rgba(16, 185, 129, 0.15) 100%);
-      --civic-sidebar-active-text: #60a5fa;
   }
 
   html {
@@ -304,7 +226,7 @@ st.markdown(clean_html("""
       font-weight: 600 !important;
       border-radius: 10px !important;
       padding: 0.55rem 1.25rem !important;
-      box-shadow: 0 4px 14px rgba(29, 78, 216, 0.28) !important;
+      box-shadow: 0 4px 14px rgba(29, 78, 216, 0.25) !important;
       transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
   }
   button[kind="primary"] p {
@@ -316,42 +238,43 @@ st.markdown(clean_html("""
       box-shadow: 0 6px 20px rgba(5, 150, 105, 0.35) !important;
   }
 
-  /* Secondary & Action Buttons */
+  /* Secondary & Action Buttons (Pure Clean White with Vibrant Municipal Blue Text) */
   button:not([kind="primary"]) {
-      background: var(--civic-card-bg) !important;
-      border: 1.5px solid var(--civic-card-border) !important;
-      color: var(--civic-blue) !important;
+      background: #ffffff !important;
+      border: 1.5px solid rgba(37, 99, 235, 0.25) !important;
+      color: #2563eb !important;
       font-weight: 600 !important;
       border-radius: 10px !important;
       padding: 0.55rem 1.25rem !important;
       transition: all 0.2s ease !important;
-      box-shadow: var(--civic-card-shadow) !important;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03) !important;
   }
   button:not([kind="primary"]) p {
-      color: var(--civic-blue) !important;
+      color: #2563eb !important;
       font-weight: 600 !important;
   }
   button:not([kind="primary"]):hover {
-      border-color: var(--civic-blue-hover) !important;
-      background: var(--civic-blue-light) !important;
-      color: var(--civic-blue-hover) !important;
+      border-color: #1d4ed8 !important;
+      background: #eff6ff !important;
+      color: #1d4ed8 !important;
       transform: translateY(-2px) !important;
+      box-shadow: 0 4px 14px rgba(37, 99, 235, 0.15) !important;
   }
   button:not([kind="primary"]):hover p {
-      color: var(--civic-blue-hover) !important;
+      color: #1d4ed8 !important;
       font-weight: 700 !important;
   }
 
-  /* Left Sidebar: Theme-Adaptive Municipal Styling */
+  /* Left Sidebar: Clean White/Light Municipal Theme */
   [data-testid="stSidebar"],
   [data-testid="stSidebar"] > div,
   [data-testid="stSidebarContent"],
   section[data-testid="stSidebar"] {
-      background-color: var(--secondary-background-color, #f8fafc) !important;
-      border-right: 1px solid var(--civic-divider, rgba(148, 163, 184, 0.22)) !important;
+      background-color: #f8fafc !important;
+      border-right: 1px solid rgba(148, 163, 184, 0.22) !important;
   }
 
-  /* Sidebar Top Branding & Captions (Always 100% visible in both light & dark mode) */
+  /* Sidebar Top Branding & Captions (Clean high-contrast dark text) */
   .civic-sidebar-brand {
       padding: 6px 0 8px 0;
       margin-bottom: 4px;
@@ -359,14 +282,14 @@ st.markdown(clean_html("""
   .civic-brand-title {
       font-size: 1.55rem;
       font-weight: 800;
-      color: var(--text-color, #0f172a) !important;
+      color: #0f172a !important;
       letter-spacing: -0.02em;
       line-height: 1.25;
   }
   .civic-brand-subtitle {
       font-size: 0.82rem;
       font-weight: 500;
-      color: var(--text-color, #475569) !important;
+      color: #475569 !important;
       opacity: 0.85;
       margin-top: 4px;
       line-height: 1.35;
@@ -374,7 +297,7 @@ st.markdown(clean_html("""
   [data-testid="stSidebar"] h1,
   [data-testid="stSidebar"] h2,
   [data-testid="stSidebar"] h3 {
-      color: var(--text-color, #0f172a) !important;
+      color: #0f172a !important;
       font-weight: 800 !important;
       letter-spacing: -0.02em !important;
   }
@@ -382,18 +305,18 @@ st.markdown(clean_html("""
   [data-testid="stSidebar"] span,
   [data-testid="stSidebar"] [data-testid="stCaptionContainer"] p,
   [data-testid="stSidebar"] [data-testid="stMarkdownContainer"] p {
-      color: var(--text-color, #475569) !important;
+      color: #475569 !important;
   }
 
   [data-testid="stSidebar"] [data-testid="stRadio"] > div {
       gap: 12px;
   }
   [data-testid="stSidebar"] [data-testid="stRadio"] label {
-      background: var(--background-color, #ffffff) !important;
-      border: 1.5px solid rgba(37, 99, 235, 0.25) !important;
+      background: #ffffff !important;
+      border: 1.5px solid rgba(37, 99, 235, 0.22) !important;
       border-radius: 12px !important;
       padding: 12px 16px !important;
-      color: var(--text-color, #0f172a) !important;
+      color: #0f172a !important;
       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04) !important;
       transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
       cursor: pointer !important;
@@ -403,16 +326,16 @@ st.markdown(clean_html("""
   [data-testid="stSidebar"] [data-testid="stRadio"] label p,
   [data-testid="stSidebar"] [data-testid="stRadio"] label span,
   [data-testid="stSidebar"] [data-testid="stRadio"] label div {
-      color: var(--text-color, #0f172a) !important;
+      color: #0f172a !important;
       font-weight: 600 !important;
   }
   
   /* Left Sidebar Navigation HOVER */
   [data-testid="stSidebar"] [data-testid="stRadio"] label:hover {
-      background: rgba(37, 99, 235, 0.12) !important;
+      background: #eff6ff !important;
       border-color: #2563eb !important;
       transform: translateX(4px) !important;
-      box-shadow: 0 4px 16px rgba(37, 99, 235, 0.18) !important;
+      box-shadow: 0 4px 14px rgba(37, 99, 235, 0.15) !important;
   }
   [data-testid="stSidebar"] [data-testid="stRadio"] label:hover p,
   [data-testid="stSidebar"] [data-testid="stRadio"] label:hover span,
@@ -423,9 +346,9 @@ st.markdown(clean_html("""
   
   /* Left Sidebar Navigation ACTIVE */
   [data-testid="stSidebar"] [data-testid="stRadio"] label:has(input:checked) {
-      background: linear-gradient(135deg, rgba(37, 99, 235, 0.20) 0%, rgba(16, 185, 129, 0.15) 100%) !important;
+      background: linear-gradient(135deg, rgba(37, 99, 235, 0.12) 0%, rgba(16, 185, 129, 0.08) 100%) !important;
       border: 2px solid #2563eb !important;
-      box-shadow: 0 4px 16px rgba(37, 99, 235, 0.22) !important;
+      box-shadow: 0 4px 14px rgba(37, 99, 235, 0.16) !important;
   }
   [data-testid="stSidebar"] [data-testid="stRadio"] label:has(input:checked) p,
   [data-testid="stSidebar"] [data-testid="stRadio"] label:has(input:checked) span,
@@ -436,22 +359,22 @@ st.markdown(clean_html("""
 
   /* Expander inside Sidebar */
   [data-testid="stSidebar"] [data-testid="stExpander"] {
-      background: var(--background-color, #ffffff) !important;
-      border: 1.5px solid rgba(37, 99, 235, 0.25) !important;
+      background: #ffffff !important;
+      border: 1.5px solid rgba(37, 99, 235, 0.22) !important;
       border-radius: 12px !important;
   }
   [data-testid="stSidebar"] [data-testid="stExpander"] summary p,
   [data-testid="stSidebar"] [data-testid="stExpander"] summary span {
-      color: var(--text-color, #0f172a) !important;
+      color: #0f172a !important;
       font-weight: 600 !important;
   }
   [data-testid="stSidebar"] [data-testid="stExpander"] [data-testid="stExpanderDetails"] {
-      background: var(--background-color, #ffffff) !important;
+      background: #ffffff !important;
   }
 
   /* Sidebar Action / Logout Button */
   [data-testid="stSidebar"] button {
-      background: var(--background-color, #ffffff) !important;
+      background: #ffffff !important;
       border: 1.5px solid rgba(220, 38, 38, 0.40) !important;
       color: #dc2626 !important;
       font-weight: 600 !important;
@@ -464,7 +387,7 @@ st.markdown(clean_html("""
       font-weight: 600 !important;
   }
   [data-testid="stSidebar"] button:hover {
-      background: rgba(220, 38, 38, 0.12) !important;
+      background: rgba(220, 38, 38, 0.08) !important;
       border-color: #dc2626 !important;
       color: #b91c1c !important;
       transform: translateY(-1px) !important;
@@ -475,25 +398,24 @@ st.markdown(clean_html("""
 
   /* Metric KPI Cards with Top Accent */
   [data-testid="stMetric"] {
-      background: var(--background-color, #ffffff) !important;
-      border: 1.5px solid rgba(37, 99, 235, 0.22) !important;
-      border-top: 4px solid var(--civic-blue) !important;
+      background: #ffffff !important;
+      border: 1.5px solid rgba(37, 99, 235, 0.20) !important;
+      border-top: 4px solid #2563eb !important;
       padding: 16px 20px;
       border-radius: 14px;
-      box-shadow: var(--civic-card-shadow) !important;
+      box-shadow: 0 4px 18px rgba(37, 99, 235, 0.05) !important;
       transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
   }
   [data-testid="stMetric"]:hover {
       transform: translateY(-4px) !important;
-      border-top-color: var(--civic-green) !important;
+      border-top-color: #059669 !important;
   }
   [data-testid="stMetric"] [data-testid="stMetricLabel"] {
-      color: var(--text-color, #475569) !important;
-      opacity: 0.85;
+      color: #475569 !important;
       font-weight: 600 !important;
   }
   [data-testid="stMetric"] [data-testid="stMetricValue"] {
-      color: var(--text-color, #0f172a) !important;
+      color: #0f172a !important;
       font-weight: 800 !important;
   }
 
@@ -584,19 +506,19 @@ st.markdown(clean_html("""
       box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
   }
   div[data-testid="stRadio"]:has(input[name="officer_section_view"]) label p {
-      color: var(--civic-text-title) !important;
+      color: #0f172a !important;
       font-weight: 600 !important;
   }
   div[data-testid="stRadio"]:has(input[name="officer_section_view"]) label:hover {
       border-color: var(--civic-green) !important;
-      background: var(--civic-green-light) !important;
+      background: #ecfdf5 !important;
       color: var(--civic-green) !important;
   }
   div[data-testid="stRadio"]:has(input[name="officer_section_view"]) label:hover p {
       color: var(--civic-green) !important;
   }
   div[data-testid="stRadio"]:has(input[name="officer_section_view"]) label:has(input:checked) {
-      background: linear-gradient(135deg, rgba(29, 78, 216, 0.15), rgba(5, 150, 105, 0.12)) !important;
+      background: linear-gradient(135deg, rgba(29, 78, 216, 0.12), rgba(5, 150, 105, 0.08)) !important;
       border: 2px solid var(--civic-green) !important;
   }
   div[data-testid="stRadio"]:has(input[name="officer_section_view"]) label:has(input:checked) p {
@@ -606,35 +528,35 @@ st.markdown(clean_html("""
 
   /* Pre-submission review summary card */
   .review-summary-card {
-      background: var(--civic-review-bg);
-      border: 1.5px solid var(--civic-card-border);
+      background: #f8fafc;
+      border: 1.5px solid rgba(37, 99, 235, 0.20);
       border-left: 5px solid #059669;
       border-radius: 14px;
       padding: 18px 22px;
       margin: 16px 0;
-      color: var(--civic-text-body);
-      box-shadow: var(--civic-card-shadow);
+      color: #1e293b;
+      box-shadow: 0 4px 18px rgba(37, 99, 235, 0.05);
   }
 
   /* Card boxes for intake steps */
   .intake-box {
-      background: var(--civic-card-bg) !important;
-      border: 1.5px solid var(--civic-card-border) !important;
+      background: #ffffff !important;
+      border: 1.5px solid rgba(37, 99, 235, 0.20) !important;
       border-radius: 14px;
       padding: 20px 22px;
       margin-bottom: 20px;
-      box-shadow: var(--civic-card-shadow);
+      box-shadow: 0 4px 18px rgba(37, 99, 235, 0.05);
       transition: all 0.25s ease;
-      color: var(--civic-text-body);
+      color: #1e293b;
   }
   .intake-box:hover {
-      border-color: var(--civic-blue);
+      border-color: #2563eb;
   }
   .intake-box h1, .intake-box h2, .intake-box h3, .intake-box h4 {
-      color: var(--civic-text-title) !important;
+      color: #0f172a !important;
   }
   .intake-box p, .intake-box span, .intake-box div {
-      color: var(--civic-text-body);
+      color: #475569;
   }
   
   .ticket-box {
@@ -2027,15 +1949,15 @@ def show_citizen_intake():
         status_icon = "🟢" if agreement is True else ("🟠" if agreement is False else "🔵")
 
         st.markdown(clean_html(f"""
-        <div style="background:var(--civic-card-bg, #ffffff); border: 1.5px solid {status_color};
-                    border-radius: 12px; padding: 14px 18px; margin-bottom: 20px; box-shadow: var(--civic-card-shadow, 0 4px 18px rgba(0,0,0,0.05));">
+        <div style="background:#ffffff; border: 1.5px solid {status_color};
+                    border-radius: 12px; padding: 14px 18px; margin-bottom: 20px; box-shadow: 0 4px 18px rgba(0,0,0,0.05);">
           <div style="font-weight: 700; color: {status_color}; font-size: 1.0rem;">
             {status_icon} Multimodal Dispatch Decision: {fusion_result.get('category_display', 'Municipal Issue')}
           </div>
-          <div style="font-size: 0.88rem; color: var(--civic-text-sub, #475569); margin-top: 4px;">
+          <div style="font-size: 0.88rem; color: #475569; margin-top: 4px;">
             <b>Decision Rule:</b> {decision_msg}
           </div>
-          <div style="display: flex; gap: 20px; margin-top: 10px; font-size: 0.84rem; flex-wrap: wrap; color: var(--civic-text-body, #1e293b);">
+          <div style="display: flex; gap: 20px; margin-top: 10px; font-size: 0.84rem; flex-wrap: wrap; color: #1e293b;">
             <span>📷 <b>CV Detected:</b> {cv_seen} ({best_cv_pct})</span>
             <span>🧠 <b>NLP Extracted:</b> {nlp_said} ({nlp_results['confidence']:.0%})</span>
             <span>⚖️ <b>Authority Signal:</b> {fusion_result.get('authority_modality', 'NLP & Citizen Description')}</span>
@@ -2102,25 +2024,25 @@ def show_citizen_intake():
             comp_conf_pct = round(fusion_result.get("composite_confidence", 0.85) * 100)
 
             st.markdown(clean_html(f"""
-            <div style="background:var(--civic-card-bg, #ffffff); border:2px solid var(--civic-card-border, rgba(37,99,235,0.25)); border-radius:16px; padding:20px 22px; box-shadow:var(--civic-card-shadow, 0 6px 22px rgba(0,0,0,0.06)); margin-bottom:18px;">
+            <div style="background:#ffffff; border:2px solid rgba(37,99,235,0.22); border-radius:16px; padding:20px 22px; box-shadow:0 6px 22px rgba(0,0,0,0.06); margin-bottom:18px;">
               <!-- Header -->
-              <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1.5px solid var(--civic-divider, rgba(148,163,184,0.22)); padding-bottom:12px; margin-bottom:14px; flex-wrap:wrap; gap:8px;">
+              <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1.5px solid rgba(148,163,184,0.22); padding-bottom:12px; margin-bottom:14px; flex-wrap:wrap; gap:8px;">
                 <div style="display:flex; align-items:center; gap:8px;">
                   <span style="font-size:1.35rem;">🏛️</span>
                   <div>
-                    <div style="font-size:1.02rem; font-weight:800; color:var(--text-color, #0f172a); letter-spacing:-0.01em;">MUNICIPAL COMPLAINT WORK ORDER</div>
-                    <div style="font-size:0.76rem; color:var(--text-color, #475569); opacity:0.85;">Official AI Municipal Dispatch • City Corporation</div>
+                    <div style="font-size:1.02rem; font-weight:800; color:#0f172a; letter-spacing:-0.01em;">MUNICIPAL COMPLAINT WORK ORDER</div>
+                    <div style="font-size:0.76rem; color:#475569;">Official AI Municipal Dispatch • City Corporation</div>
                   </div>
                 </div>
-                <div style="background:rgba(16,185,129,0.16); color:#10b981; border:1.5px solid #10b981; padding:3px 12px; border-radius:20px; font-size:0.80rem; font-weight:700;">
+                <div style="background:rgba(16,185,129,0.14); color:#059669; border:1.5px solid #10b981; padding:3px 12px; border-radius:20px; font-size:0.80rem; font-weight:700;">
                   📋 Registered
                 </div>
               </div>
 
               <!-- HIGHLIGHTED TICKET ID (Primary Citizen Tracking Reference) -->
-              <div style="background:linear-gradient(135deg, rgba(37,99,235,0.16) 0%, rgba(5,150,105,0.12) 100%); border:2px solid #2563eb; border-radius:12px; padding:14px 18px; margin-bottom:16px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
+              <div style="background:linear-gradient(135deg, rgba(37,99,235,0.12) 0%, rgba(16,185,129,0.08) 100%); border:2px solid #2563eb; border-radius:12px; padding:14px 18px; margin-bottom:16px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
                 <div>
-                  <div style="font-size:0.74rem; font-weight:800; text-transform:uppercase; letter-spacing:0.06em; color:var(--text-color, #475569); opacity:0.85;">
+                  <div style="font-size:0.74rem; font-weight:800; text-transform:uppercase; letter-spacing:0.06em; color:#475569;">
                     YOUR OFFICIAL TRACKING TICKET ID
                   </div>
                   <div style="font-size:1.85rem; font-weight:900; color:#2563eb; letter-spacing:0.04em; margin-top:2px;">
@@ -2131,7 +2053,7 @@ def show_citizen_intake():
                   <div style="background:#2563eb; color:#ffffff; padding:5px 12px; border-radius:8px; font-size:0.80rem; font-weight:700;">
                     🔍 Track My Complaint
                   </div>
-                  <div style="font-size:0.73rem; color:var(--text-color, #475569); opacity:0.85; margin-top:3px;">
+                  <div style="font-size:0.73rem; color:#475569; margin-top:3px;">
                     Save this ID to check live status in sidebar
                   </div>
                 </div>
@@ -2139,37 +2061,37 @@ def show_citizen_intake():
 
               <!-- 2x2 Clean Details Grid -->
               <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(170px, 1fr)); gap:10px; margin-bottom:14px;">
-                <div style="background:rgba(37,99,235,0.06); border:1px solid rgba(37,99,235,0.20); border-radius:10px; padding:10px 12px;">
+                <div style="background:#f8fafc; border:1px solid rgba(37,99,235,0.18); border-radius:10px; padding:10px 12px;">
                   <div style="font-size:0.72rem; font-weight:700; text-transform:uppercase; color:#64748b;">🏷️ Category & Problem</div>
-                  <div style="font-size:0.90rem; font-weight:700; color:var(--text-color, #0f172a); margin-top:2px;">{fusion_result['category_display']}</div>
-                  <div style="font-size:0.78rem; color:var(--text-color, #475569); opacity:0.85; margin-top:1px;">{fusion_result['problem_title']}</div>
+                  <div style="font-size:0.90rem; font-weight:700; color:#0f172a; margin-top:2px;">{fusion_result['category_display']}</div>
+                  <div style="font-size:0.78rem; color:#475569; margin-top:1px;">{fusion_result['problem_title']}</div>
                 </div>
 
-                <div style="background:rgba(37,99,235,0.06); border:1px solid rgba(37,99,235,0.20); border-radius:10px; padding:10px 12px;">
+                <div style="background:#f8fafc; border:1px solid rgba(37,99,235,0.18); border-radius:10px; padding:10px 12px;">
                   <div style="font-size:0.72rem; font-weight:700; text-transform:uppercase; color:#64748b;">⚠️ Severity & Priority</div>
                   <div style="font-size:0.90rem; font-weight:700; color:{prio_color}; margin-top:2px;">{fusion_result['priority']} ({fusion_result['severity']})</div>
-                  <div style="font-size:0.78rem; color:var(--text-color, #475569); opacity:0.85; margin-top:1px;">AI Confidence: <b>{comp_conf_pct}%</b></div>
+                  <div style="font-size:0.78rem; color:#475569; margin-top:1px;">AI Confidence: <b>{comp_conf_pct}%</b></div>
                 </div>
 
-                <div style="background:rgba(37,99,235,0.06); border:1px solid rgba(37,99,235,0.20); border-radius:10px; padding:10px 12px;">
+                <div style="background:#f8fafc; border:1px solid rgba(37,99,235,0.18); border-radius:10px; padding:10px 12px;">
                   <div style="font-size:0.72rem; font-weight:700; text-transform:uppercase; color:#64748b;">📍 Incident Location</div>
-                  <div style="font-size:0.90rem; font-weight:700; color:var(--text-color, #0f172a); margin-top:2px;">{escape(loc_clean)}</div>
-                  <div style="font-size:0.78rem; color:var(--text-color, #475569); opacity:0.85; margin-top:1px;">City Zone</div>
+                  <div style="font-size:0.90rem; font-weight:700; color:#0f172a; margin-top:2px;">{escape(loc_clean)}</div>
+                  <div style="font-size:0.78rem; color:#475569; margin-top:1px;">City Zone</div>
                 </div>
 
-                <div style="background:rgba(37,99,235,0.06); border:1px solid rgba(37,99,235,0.20); border-radius:10px; padding:10px 12px;">
+                <div style="background:#f8fafc; border:1px solid rgba(37,99,235,0.18); border-radius:10px; padding:10px 12px;">
                   <div style="font-size:0.72rem; font-weight:700; text-transform:uppercase; color:#64748b;">🏛️ Routing Department</div>
-                  <div style="font-size:0.90rem; font-weight:700; color:var(--text-color, #0f172a); margin-top:2px;">{fusion_result['department']}</div>
+                  <div style="font-size:0.90rem; font-weight:700; color:#0f172a; margin-top:2px;">{fusion_result['department']}</div>
                   <div style="font-size:0.78rem; color:#10b981; font-weight:600; margin-top:1px;">Dispatched to Field Crew</div>
                 </div>
               </div>
 
               <!-- Registered Description -->
-              <div style="background:rgba(37,99,235,0.06); border:1px solid rgba(37,99,235,0.20); border-left:4px solid #2563eb; border-radius:10px; padding:12px 14px;">
+              <div style="background:#f8fafc; border:1px solid rgba(37,99,235,0.18); border-left:4px solid #2563eb; border-radius:10px; padding:12px 14px;">
                 <div style="font-size:0.72rem; font-weight:700; text-transform:uppercase; color:#64748b; margin-bottom:4px;">
                   💬 Registered Citizen Description
                 </div>
-                <div style="font-size:0.90rem; color:var(--text-color, #0f172a); line-height:1.5; word-break:break-word;">
+                <div style="font-size:0.90rem; color:#0f172a; line-height:1.5; word-break:break-word;">
                   "{escape(final_text)}"
                 </div>
               </div>

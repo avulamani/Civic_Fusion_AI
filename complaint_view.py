@@ -241,7 +241,7 @@ def format_complaint_card_html(complaint: dict[str, Any], is_officer: bool = Fal
 
     # Build card HTML without indentation on ANY line
     card_lines: list[str] = [
-        '<div class="civic-complaint-card" style="background:var(--background-color, #ffffff);border:1.5px solid rgba(37,99,235,0.22);border-radius:14px;padding:22px 26px;margin-bottom:18px;font-family:system-ui,-apple-system,sans-serif;box-sizing:border-box;box-shadow:0 4px 20px rgba(0,0,0,0.06);">',
+        '<div class="civic-complaint-card" style="background:#ffffff;border:1.5px solid rgba(37,99,235,0.22);border-radius:14px;padding:22px 26px;margin-bottom:18px;font-family:system-ui,-apple-system,sans-serif;box-sizing:border-box;box-shadow:0 4px 20px rgba(0,0,0,0.06);">',
         # Header Row
         '<div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:12px;margin-bottom:16px;border-bottom:1px solid rgba(148,163,184,0.22);padding-bottom:14px;">',
         '<div>',
@@ -250,7 +250,7 @@ def format_complaint_card_html(complaint: dict[str, Any], is_officer: bool = Fal
         f'    🎫 Ticket {cid_esc}'
         f'  </span>'
         f'</div>',
-        f'<div style="font-size:0.86rem;color:var(--text-color, #475569);opacity:0.85;margin-top:6px;">📅 Submitted on <b>{reported_esc}</b>'
+        f'<div style="font-size:0.86rem;color:#475569;opacity:0.85;margin-top:6px;">📅 Submitted on <b>{reported_esc}</b>'
         + (f' &nbsp;•&nbsp; 🕒 Last updated <b>{updated_esc}</b>' if updated_esc and updated_esc != reported_esc else '')
         + '</div>',
         '</div>',
@@ -262,43 +262,43 @@ def format_complaint_card_html(complaint: dict[str, Any], is_officer: bool = Fal
 
         '<div>',
         '<div style="color:#64748b;font-size:0.8rem;font-weight:700;text-transform:uppercase;letter-spacing:0.04em;">🏷️ Category & Problem</div>',
-        f'<div style="color:var(--text-color, #0f172a);font-weight:700;font-size:1.02rem;margin-top:2px;">{cat_esc}</div>',
-        (f'<div style="color:var(--text-color, #475569);opacity:0.85;font-size:0.86rem;margin-top:2px;">{problem_esc}</div>' if problem_esc != cat_esc else ''),
+        f'<div style="color:#0f172a;font-weight:700;font-size:1.02rem;margin-top:2px;">{cat_esc}</div>',
+        (f'<div style="color:#475569;opacity:0.85;font-size:0.86rem;margin-top:2px;">{problem_esc}</div>' if problem_esc != cat_esc else ''),
         (f'<div style="color:#0284c7;font-size:0.80rem;font-weight:600;margin-top:3px;">➕ Secondary Condition: {", ".join([escape(s.replace("_", " ").title()) for s in data["secondary_categories"]])}</div>' if data.get("secondary_categories") else ''),
         '</div>',
 
         '<div>',
         '<div style="color:#64748b;font-size:0.8rem;font-weight:700;text-transform:uppercase;letter-spacing:0.04em;">⚠️ Severity & Priority</div>',
-        f'<div style="margin-top:2px;"><span style="color:{prio_color};font-weight:700;font-size:1.02rem;">{priority_esc} ({severity_esc})</span> <span style="color:var(--text-color, #475569);opacity:0.85;font-size:0.84rem;">• {data["citizen_reports_count"]} report(s) in cluster</span></div>',
+        f'<div style="margin-top:2px;"><span style="color:{prio_color};font-weight:700;font-size:1.02rem;">{priority_esc} ({severity_esc})</span> <span style="color:#475569;opacity:0.85;font-size:0.84rem;">• {data["citizen_reports_count"]} report(s) in cluster</span></div>',
         '</div>',
 
         '<div>',
         '<div style="color:#64748b;font-size:0.8rem;font-weight:700;text-transform:uppercase;letter-spacing:0.04em;">📍 Location & City</div>',
-        f'<div style="color:var(--text-color, #0f172a);font-weight:700;font-size:1.02rem;margin-top:2px;">{loc_esc} <span style="background:rgba(37,99,235,0.12);color:#2563eb;border:1px solid rgba(37,99,235,0.22);padding:2px 8px;border-radius:10px;font-size:0.75rem;font-weight:700;margin-left:4px;">🏛️ {city_esc}</span></div>',
-        (f'<div style="color:var(--text-color, #475569);opacity:0.85;font-size:0.84rem;font-family:monospace;margin-top:3px;">🌐 {escape(coords_str)}</div>' if coords_str else ''),
+        f'<div style="color:#0f172a;font-weight:700;font-size:1.02rem;margin-top:2px;">{loc_esc} <span style="background:rgba(37,99,235,0.12);color:#2563eb;border:1px solid rgba(37,99,235,0.22);padding:2px 8px;border-radius:10px;font-size:0.75rem;font-weight:700;margin-left:4px;">🏛️ {city_esc}</span></div>',
+        (f'<div style="color:#475569;opacity:0.85;font-size:0.84rem;font-family:monospace;margin-top:3px;">🌐 {escape(coords_str)}</div>' if coords_str else ''),
         '</div>',
 
         '<div>',
         '<div style="color:#64748b;font-size:0.8rem;font-weight:700;text-transform:uppercase;letter-spacing:0.04em;">🏛️ Department</div>',
-        f'<div style="color:var(--text-color, #0f172a);font-weight:700;font-size:1.02rem;margin-top:2px;">{dept_esc}</div>',
-        (f'<div style="color:var(--text-color, #475569);opacity:0.85;font-size:0.86rem;margin-top:2px;">👤 {officer_esc}</div>' if officer_esc else ''),
+        f'<div style="color:#0f172a;font-weight:700;font-size:1.02rem;margin-top:2px;">{dept_esc}</div>',
+        (f'<div style="color:#475569;opacity:0.85;font-size:0.86rem;margin-top:2px;">👤 {officer_esc}</div>' if officer_esc else ''),
         '</div>',
 
         '</div>',
 
         # Description Box
-        '<div style="background:rgba(37,99,235,0.06);border:1.5px solid rgba(37,99,235,0.20);border-radius:10px;padding:14px 18px;margin-bottom:14px;">',
+        '<div style="background:#f8fafc;border:1.5px solid rgba(37,99,235,0.18);border-radius:10px;padding:14px 18px;margin-bottom:14px;">',
         f'<div style="color:#64748b;font-size:0.8rem;font-weight:700;text-transform:uppercase;letter-spacing:0.04em;margin-bottom:6px;">💬 Citizen Description <span style="background:rgba(37,99,235,0.12);color:#2563eb;border:1px solid rgba(37,99,235,0.22);padding:2px 8px;border-radius:10px;font-size:0.75rem;font-weight:700;margin-left:6px;">🌐 {escape(str(data.get("language_name", "English")))}</span></div>',
-        f'<div style="color:var(--text-color, #0f172a);font-size:0.95rem;font-weight:500;line-height:1.55;word-break:break-word;">"{desc_esc}"</div>',
+        f'<div style="color:#0f172a;font-size:0.95rem;font-weight:500;line-height:1.55;word-break:break-word;">"{desc_esc}"</div>',
         '</div>',
     ]
 
     # Remarks Box (only displayed if remarks exist)
     if remarks_esc:
         card_lines.extend([
-            '<div style="background:rgba(37,99,235,0.06);border:1.5px solid rgba(37,99,235,0.25);border-left:4px solid #2563eb;border-radius:10px;padding:14px 18px;margin-bottom:14px;">',
+            '<div style="background:#f8fafc;border:1.5px solid rgba(37,99,235,0.25);border-left:4px solid #2563eb;border-radius:10px;padding:14px 18px;margin-bottom:14px;">',
             '<div style="color:#2563eb;font-size:0.8rem;font-weight:700;text-transform:uppercase;letter-spacing:0.04em;margin-bottom:6px;">📝 Resolution Updates</div>',
-            f'<div style="color:var(--text-color, #1e293b);font-size:0.92rem;line-height:1.5;word-break:break-word;">{remarks_esc}</div>',
+            f'<div style="color:#1e293b;font-size:0.92rem;line-height:1.5;word-break:break-word;">{remarks_esc}</div>',
             '</div>',
         ])
 
@@ -381,11 +381,11 @@ def render_officer_translation_tool(complaint: dict[str, Any]) -> None:
         with col_orig:
             st.markdown(
                 clean_html(f"""
-                <div style="background:rgba(37,99,235,0.06);border:1.5px solid rgba(37,99,235,0.20);border-radius:10px;padding:14px 16px;min-height:95px;box-shadow:0 2px 8px rgba(0,0,0,0.03);">
+                <div style="background:#f8fafc;border:1.5px solid rgba(37,99,235,0.18);border-radius:10px;padding:14px 16px;min-height:95px;box-shadow:0 2px 8px rgba(0,0,0,0.03);">
                   <div style="color:#64748b;font-size:0.78rem;font-weight:700;text-transform:uppercase;letter-spacing:0.04em;">
                     📄 Original Citizen Text ({escape(orig_lang_name)})
                   </div>
-                  <div style="color:var(--text-color, #0f172a);font-size:0.94rem;font-weight:500;margin-top:6px;line-height:1.5;word-break:break-word;">
+                  <div style="color:#0f172a;font-size:0.94rem;font-weight:500;margin-top:6px;line-height:1.5;word-break:break-word;">
                     "{escape(desc)}"
                   </div>
                 </div>
@@ -401,7 +401,7 @@ def render_officer_translation_tool(complaint: dict[str, Any]) -> None:
                       <div style="color:#059669;font-size:0.78rem;font-weight:700;text-transform:uppercase;letter-spacing:0.04em;">
                         🌐 Translated Text ({escape(target_lang_choice)})
                       </div>
-                      <div style="color:var(--text-color, #0f172a);font-size:0.94rem;font-weight:500;margin-top:6px;line-height:1.5;word-break:break-word;">
+                      <div style="color:#0f172a;font-size:0.94rem;font-weight:500;margin-top:6px;line-height:1.5;word-break:break-word;">
                         "{escape(active_translation)}"
                       </div>
                     </div>
@@ -411,8 +411,8 @@ def render_officer_translation_tool(complaint: dict[str, Any]) -> None:
             else:
                 st.markdown(
                     clean_html(f"""
-                    <div style="background:rgba(37,99,235,0.04);border:1.5px dashed rgba(148,163,184,0.40);border-radius:10px;padding:14px 16px;min-height:95px;display:flex;flex-direction:column;justify-content:center;align-items:center;">
-                      <div style="color:var(--text-color, #475569);opacity:0.85;font-size:0.86rem;font-weight:500;">Click <b>🔄 Translate</b> to generate on-demand translation</div>
+                    <div style="background:#f8fafc;border:1.5px dashed rgba(148,163,184,0.40);border-radius:10px;padding:14px 16px;min-height:95px;display:flex;flex-direction:column;justify-content:center;align-items:center;">
+                      <div style="color:#475569;font-size:0.86rem;font-weight:500;">Click <b>🔄 Translate</b> to generate on-demand translation</div>
                     </div>
                     """),
                     unsafe_allow_html=True,
@@ -495,10 +495,10 @@ def render_complaint_media_and_detections(complaint: dict[str, Any], is_officer:
                 st.info("ℹ️ Annotated image preview unavailable.")
         else:
             st.markdown(
-                '<div style="background:rgba(37,99,235,0.05);border:1.5px dashed rgba(37,99,235,0.25);border-radius:10px;padding:24px 18px;text-align:center;color:var(--text-color, #1e293b);margin-top:10px;">'
-                '<b style="color:var(--text-color, #0f172a);">🔍 YOLO Vision Assessment:</b><br/>'
+                '<div style="background:#f8fafc;border:1.5px dashed rgba(37,99,235,0.25);border-radius:10px;padding:24px 18px;text-align:center;color:#1e293b;margin-top:10px;">'
+                '<b style="color:#0f172a;">🔍 YOLO Vision Assessment:</b><br/>'
                 'No municipal hazards detected above the <b>50% confidence threshold</b> in this photograph.<br/>'
-                '<span style="font-size:0.85rem;color:var(--text-color, #475569);opacity:0.85;">NLP text analysis serves as the primary classification signal.</span>'
+                '<span style="font-size:0.85rem;color:#475569;">NLP text analysis serves as the primary classification signal.</span>'
                 '</div>',
                 unsafe_allow_html=True,
             )
