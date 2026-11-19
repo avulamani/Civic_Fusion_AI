@@ -1,0 +1,41 @@
+{
+  "categories": [
+    "road_damage",
+    "open_manhole",
+    "open_drain",
+    "drain_blockage",
+    "waste",
+    "streetlight_damage",
+    "water_leakage",
+    "waterlogging",
+    "damaged_sign",
+    "traffic_signal_damage",
+    "fallen_tree"
+  ],
+  "cat2idx": {
+    "road_damage": 0,
+    "open_manhole": 1,
+    "open_drain": 2,
+    "drain_blockage": 3,
+    "waste": 4,
+    "streetlight_damage": 5,
+    "water_leakage": 6,
+    "waterlogging": 7,
+    "damaged_sign": 8,
+    "traffic_signal_damage": 9,
+    "fallen_tree": 10
+  },
+  "idx2cat": {
+    "0": "road_damage",
+    "1": "open_manhole",
+    "2": "open_drain",
+    "3": "drain_blockage",
+    "4": "waste",
+    "5": "streetlight_damage",
+    "6": "water_leakage",
+    "7": "waterlogging",
+    "8": "damaged_sign",
+    "9": "traffic_signal_damage",
+    "10": "fallen_tree"
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "dedicated_yolo11n": {
+    "model_type": "Dedicated Supervised Fine-Tuned YOLO11 Nano",
+    "format": "PyTorch / ONNX",
+    "precision": 0.0298,
+    "recall": 0.5,
+    "mAP50": 0.4005,
+    "mAP50_95": 0.0948,
+    "per_class_ap50": {
+      "pothole": 0.995,
+      "damaged_road": 0.0136,
+      "open_manhole": 0.1928
+    },
+    "classes": [
+      "pothole",
+      "damaged_road",
+      "open_manhole",
+      "open_drain",
+      "garbage",
+      "streetlight_damage"
+    ],
+    "onnx_latency_ms": 37.97,
+    "model_size_mb": 10.14
+  },
+  "yolo_world_v2_baseline": {
+    "model_type": "YOLOv8s-World v2 (Zero-shot text-prompted)",
+    "format": "ONNX",
+    "model_size_mb": 48.88,
+    "onnx_latency_ms": 213.68,
+    "note": "Open-vocabulary zero-shot prompt detector; suffers from high false-positive rate and large model footprint (~51MB)."
+  },
+  "false_positive_analysis": {
+    "clean_control_image": "road_damage_phagwara_01.jpg",
+    "max_confidence_on_clean_road": 0.0843,
+    "false_positives_detected_at_threshold_0.25": false,
+    "status": "PASS: Zero false-positives on clean pavement"
+  }
+}

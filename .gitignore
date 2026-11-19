@@ -1,0 +1,27 @@
+# Python & Virtualenv
+.venv/
+__pycache__/
+*.py[cod]
+*$py.class
+*.log
+
+# Sensitive configurations & local cache
+.streamlit/secrets.toml
+data/private_*
+
+# Large Model Checkpoints (> 100MB blocked by GitHub)
+*.pt
+*.bin
+weights/
+models/indicbert/indicbert_classifier.pt
+backup/
+
+# Legacy heavy exports
+yolov8s-worldv2.onnx
+yolov8s-worldv2.pt
+models/municipal_worldv2.onnx
+
+# Temporary scratch & local training runs
+scratch/
+runs/
+*_backup*.py

@@ -1,0 +1,14 @@
+city,location_name,latitude,longitude,landmark_type,common_issues,verification_source
+Phagwara,"GT Road (NH-44), Phagwara",31.2241,75.7709,Arterial Highway,"Potholes, Road surface cracking, Broken shoulders",OpenStreetMap / Survey of India Benchmark
+Phagwara,"Hoshiarpur Road (Sugar Mill Crossing), Phagwara",31.2294,75.7788,Commercial Roadway,"Garbage accumulation, Asphalt edge breakdown, Drainage overflow",OpenStreetMap
+Phagwara,"Gol Chowk / Railway Station Road, Phagwara",31.2185,75.7672,Transit Junction,"Market waste dumping, Blocked storm drains, Potholes",OpenStreetMap
+Phagwara,"Banga Road, Phagwara",31.2152,75.7820,Sub-arterial Road,"Roadside garbage piles, Pavement deterioration",OpenStreetMap
+Phagwara,"Satnampura, Phagwara",31.2330,75.7615,Residential Sector,"Open drainage ditch, Water accumulation, Potholes",OpenStreetMap
+Phagwara,"LPU Highway Gate, Phagwara-Jalandhar GT Road",31.2543,75.7042,Highway Corridor,"Road surface wear, Stormwater channel blockage",OpenStreetMap / NHAI GT Road Corridor
+Jalandhar,"66 Feet Road (Urban Estate Phase II), Jalandhar",31.2812,75.5894,Major Arterial,"Road surface damage, Construction rubble, Potholes",OpenStreetMap / Jalandhar Master Plan
+Jalandhar,"BMC Chowk (Grand Trunk Road), Jalandhar",31.3195,75.5828,Central Traffic Junction,"Asphalt wear, Damaged traffic island, Potholes",OpenStreetMap / Municipal Corporation Jalandhar
+Jalandhar,"Model Town Market, Jalandhar",31.3090,75.5802,Commercial District,"Overflowing public dustbins, Street garbage accumulation",OpenStreetMap
+Jalandhar,"Rama Mandi Chowk (Hoshiarpur Road), Jalandhar",31.3115,75.6260,Highway Junction,"Potholes, Waterlogging, Broken road margins",OpenStreetMap / NH-3 Corridor
+Jalandhar,"Patel Chowk / Workshop Road, Jalandhar",31.3320,75.5680,Commercial-Industrial,"Open roadside drains, Asphalt cracking, Rubble",OpenStreetMap
+Jalandhar,"Jalandhar City Railway Station Road",31.3385,75.5862,Transit Hub,"Roadside garbage accumulation, Blocked drains, Footpath damage",OpenStreetMap
+

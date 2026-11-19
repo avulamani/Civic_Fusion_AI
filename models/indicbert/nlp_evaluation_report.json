@@ -1,0 +1,267 @@
+{
+  "indicbert_model": {
+    "model_id": "ai4bharat/IndicBERTv2-MLM-only",
+    "architecture": "IndicBERTv2 Sequence Classifier (768-dim, Mean Pooling, MLP head)",
+    "overall_accuracy": 1.0,
+    "macro_f1": 1.0,
+    "language_performance": {
+      "en": {
+        "accuracy": 1.0,
+        "macro_f1": 1.0,
+        "samples": 56
+      },
+      "hi": {
+        "accuracy": 1.0,
+        "macro_f1": 1.0,
+        "samples": 56
+      },
+      "te": {
+        "accuracy": 1.0,
+        "macro_f1": 1.0,
+        "samples": 56
+      }
+    },
+    "per_class_metrics": {
+      "road_damage": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1_score": 1.0
+      },
+      "open_manhole": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1_score": 1.0
+      },
+      "open_drain": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1_score": 1.0
+      },
+      "drain_blockage": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1_score": 1.0
+      },
+      "waste": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1_score": 1.0
+      },
+      "streetlight_damage": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1_score": 1.0
+      },
+      "water_leakage": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1_score": 1.0
+      },
+      "waterlogging": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1_score": 1.0
+      },
+      "damaged_sign": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1_score": 1.0
+      },
+      "traffic_signal_damage": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1_score": 1.0
+      },
+      "fallen_tree": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1_score": 1.0
+      }
+    },
+    "confusion_matrix": [
+      [
+        21,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        16,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        14,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        16,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        14,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        15,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        15,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        14,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        14,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        15,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        14
+      ]
+    ],
+    "categories": [
+      "road_damage",
+      "open_manhole",
+      "open_drain",
+      "drain_blockage",
+      "waste",
+      "streetlight_damage",
+      "water_leakage",
+      "waterlogging",
+      "damaged_sign",
+      "traffic_signal_damage",
+      "fallen_tree"
+    ],
+    "avg_inference_latency_ms": 152.88,
+    "training_time_seconds": 1416.77
+  },
+  "baseline_tfidf": {
+    "model_id": "TfidfVectorizer(1,2) + LogisticRegression(balanced)",
+    "overall_accuracy": 1.0,
+    "macro_f1": 1.0,
+    "language_performance": {
+      "en": {
+        "accuracy": 1.0,
+        "macro_f1": 1.0
+      },
+      "hi": {
+        "accuracy": 1.0,
+        "macro_f1": 1.0
+      },
+      "te": {
+        "accuracy": 1.0,
+        "macro_f1": 1.0
+      }
+    },
+    "training_time_seconds": 0.89
+  },
+  "comparison": {
+    "accuracy_improvement": 0.0,
+    "macro_f1_improvement": 0.0,
+    "winner": "TF-IDF Baseline"
+  }
+}

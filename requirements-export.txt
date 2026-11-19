@@ -1,0 +1,3 @@
+# Local-only dependency for downloading and exporting prompt-configured YOLO-World v2.
+# Do not add this file to the Render service requirements; Render runs ONNX Runtime.
+ultralytics>=8.3,<9

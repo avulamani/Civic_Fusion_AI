@@ -1,0 +1,47 @@
+{
+  "total_tests": 10,
+  "passed": 10,
+  "pass_rate": 1.0,
+  "scenarios": [
+    {
+      "scenario": "Scenario 1: Pothole Defect (Hindi)",
+      "passed": true
+    },
+    {
+      "scenario": "Scenario 2: Solid Waste (Telugu)",
+      "passed": true
+    },
+    {
+      "scenario": "Scenario 3: Open Drain Trench (English)",
+      "passed": true
+    },
+    {
+      "scenario": "Scenario 4: Open Manhole Safety Escalation",
+      "passed": true
+    },
+    {
+      "scenario": "Scenario 5: Streetlight Outage",
+      "passed": true
+    },
+    {
+      "scenario": "Scenario 6: Clean Road Negative Control",
+      "passed": true
+    },
+    {
+      "scenario": "Scenario 7: Cross-Lingual Duplicate (EN-HI)",
+      "passed": true
+    },
+    {
+      "scenario": "Scenario 8: Spatial Separation Safety (>250m)",
+      "passed": true
+    },
+    {
+      "scenario": "Scenario 9: Co-Located Category Separation",
+      "passed": true
+    },
+    {
+      "scenario": "Scenario 10: Native Script Preservation",
+      "passed": true
+    }
+  ]
+}

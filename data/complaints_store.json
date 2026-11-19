@@ -1,0 +1,585 @@
+[
+  {
+    "id": "CF-1065",
+    "description": "there is a pothole behind police station",
+    "original_language": "en",
+    "language_name": "English",
+    "translated_description_en": "there is a pothole behind police station",
+    "category_raw": "road_damage",
+    "category_display": "Road Damage",
+    "secondary_categories": [],
+    "decision_reason": "Final category 'Road Damage' confirmed from citizen description via NLP and corroborated by YOLO visual object detection (89%).",
+    "visual_evidence_summary": "Corroborated by YOLO Vision: Detected pothole (89%)",
+    "problem_title": "Pothole / Road Surface Damage",
+    "department": "Road Maintenance Department",
+    "location_name": "GPS (51.1790, 75.7037)",
+    "city": "City Zone",
+    "latitude": 51.179,
+    "longitude": 75.70372,
+    "severity": "Medium",
+    "priority": "P3",
+    "status": "Registered",
+    "citizen_reports_count": 1,
+    "ai_confidence": 0.99,
+    "needs_review": false,
+    "reported_date": "2026-11-19",
+    "photo_path": "data\\uploads\\CF-1065.jpg",
+    "annotated_photo_path": "data\\uploads\\CF-1065_annotated.jpg",
+    "detections": [
+      {
+        "class_name": "pothole",
+        "category": "road_damage",
+        "confidence": 0.8883,
+        "confidence_percent": 88.8,
+        "bbox": [
+          161.2,
+          169.3,
+          366.9,
+          311.5
+        ]
+      }
+    ],
+    "model_version": "YOLO11n-municipal_detection-v1.0"
+  },
+  {
+    "id": "CF-1064",
+    "description": "there is some garbage fall and on the roadside",
+    "original_language": "en",
+    "language_name": "English",
+    "translated_description_en": "there is some garbage fall and on the roadside",
+    "category_raw": "waste",
+    "category_display": "Garbage / Waste",
+    "secondary_categories": [],
+    "decision_reason": "Final category 'Garbage / Waste' confirmed from citizen description via NLP and corroborated by YOLO visual object detection (68%).",
+    "visual_evidence_summary": "Corroborated by YOLO Vision: Detected garbage (68%)",
+    "problem_title": "Garbage Accumulation / Overflowing Bin",
+    "department": "Sanitation & Waste Management Department",
+    "location_name": "GPS (51.2518, 75.7038)",
+    "city": "City Zone",
+    "latitude": 51.25178,
+    "longitude": 75.70376,
+    "severity": "Critical",
+    "priority": "P1",
+    "status": "Registered",
+    "citizen_reports_count": 1,
+    "ai_confidence": 0.87,
+    "needs_review": false,
+    "reported_date": "2026-11-19",
+    "photo_path": "data\\uploads\\CF-1064.jpg",
+    "annotated_photo_path": "data\\uploads\\CF-1064_annotated.jpg",
+    "detections": [
+      {
+        "class_name": "garbage",
+        "category": "waste",
+        "confidence": 0.6763,
+        "confidence_percent": 67.6,
+        "bbox": [
+          77.4,
+          106.5,
+          548.7,
+          291.0
+        ]
+      }
+    ],
+    "model_version": "YOLO11n-municipal_detection-v1.0"
+  },
+  {
+    "id": "CF-1063",
+    "description": "ఇక్కడ చాలా చెత్త మిగిలి ఉంది. దీంతో దుర్వాసన వస్తుండటంతో విద్యార్థులు వెళ్లేందుకు తీవ్ర ఇబ్బందులు పడుతున్నారు.",
+    "original_language": "te",
+    "language_name": "తెలుగు (Telugu)",
+    "translated_description_en": "There is a lot of garbage left here. As a result of this bad smell is coming, the students are facing serious difficulties to go.",
+    "category_raw": "waste",
+    "category_display": "Garbage / Waste",
+    "secondary_categories": [],
+    "decision_reason": "Final category 'Garbage / Waste' confirmed from citizen description via NLP and corroborated by YOLO visual object detection (92%).",
+    "visual_evidence_summary": "Corroborated by YOLO Vision: Detected garbage (92%)",
+    "problem_title": "Garbage Accumulation / Overflowing Bin",
+    "department": "Sanitation & Waste Management Department",
+    "location_name": "college",
+    "city": "City Zone",
+    "latitude": 31.29,
+    "longitude": 75.76,
+    "severity": "Low",
+    "priority": "P4",
+    "status": "Registered",
+    "citizen_reports_count": 1,
+    "ai_confidence": 0.99,
+    "needs_review": false,
+    "reported_date": "2026-11-19",
+    "photo_path": "data\\uploads\\CF-1063.jpg",
+    "annotated_photo_path": "data\\uploads\\CF-1063_annotated.jpg",
+    "detections": [
+      {
+        "class_name": "garbage",
+        "category": "waste",
+        "confidence": 0.9196,
+        "confidence_percent": 92.0,
+        "bbox": [
+          46.9,
+          198.7,
+          722.9,
+          460.1
+        ]
+      }
+    ],
+    "model_version": "YOLO11n-municipal_detection-v1.0"
+  },
+  {
+    "id": "CF-1062",
+    "description": "There is a big pothole near the college. Many vehicles are stuck in that hole.",
+    "original_language": "en",
+    "language_name": "English",
+    "translated_description_en": "There is a big pothole near the college. Many vehicles are stuck in that hole.",
+    "category_raw": "road_damage",
+    "category_display": "Pothole / Road Damage",
+    "secondary_categories": [],
+    "decision_reason": "Final category 'Road Damage' determined from citizen description via NLP.",
+    "visual_evidence_summary": "YOLO AI Vision confirmed 1 municipal defect(s): pothole (66.4%)",
+    "problem_title": "Pothole on Roadway",
+    "department": "Road Maintenance Department",
+    "location_name": "college",
+    "city": "City Zone",
+    "latitude": 31.25178,
+    "longitude": 75.70374,
+    "severity": "High",
+    "priority": "P2",
+    "status": "Registered",
+    "citizen_reports_count": 2,
+    "ai_confidence": 0.99,
+    "needs_review": false,
+    "reported_date": "2026-11-19",
+    "photo_path": "data\\uploads\\CF-1062.jpg",
+    "annotated_photo_path": "data\\uploads\\CF-1062_annotated.jpg",
+    "detections": [
+      {
+        "class_name": "pothole",
+        "category": "road_damage",
+        "confidence": 0.6644,
+        "confidence_percent": 66.4,
+        "bbox": [
+          314.4,
+          41.4,
+          546.3,
+          297.6
+        ]
+      }
+    ],
+    "model_version": "YOLO11n-municipal_detection-v1.0"
+  },
+  {
+    "id": "CF-1060",
+    "description": "some part of the road was damaged and a pot hole is there in the road",
+    "original_language": "en",
+    "language_name": "English",
+    "translated_description_en": "some part of the road was damaged and a pot hole is there in the road",
+    "category_raw": "road_damage",
+    "category_display": "Road Damage",
+    "secondary_categories": [],
+    "decision_reason": "Final category 'Road Damage' confirmed from citizen description via NLP and corroborated by YOLO visual object detection (97%).",
+    "visual_evidence_summary": "Corroborated by YOLO Vision: Detected pothole (97%)",
+    "problem_title": "Pothole / Road Surface Damage",
+    "department": "Road Maintenance Department",
+    "location_name": "near highway",
+    "city": "City Zone",
+    "latitude": 31.34,
+    "longitude": 75.75,
+    "severity": "Medium",
+    "priority": "P3",
+    "status": "Assigned",
+    "citizen_reports_count": 1,
+    "ai_confidence": 0.99,
+    "needs_review": false,
+    "reported_date": "2026-11-19",
+    "photo_path": "data\\uploads\\CF-1060.jpg",
+    "annotated_photo_path": "data\\uploads\\CF-1060_annotated.jpg",
+    "detections": [
+      {
+        "class_name": "pothole",
+        "category": "road_damage",
+        "confidence": 0.97,
+        "confidence_percent": 97.0,
+        "bbox": [
+          158.5,
+          152.9,
+          680.1,
+          469.3
+        ]
+      },
+      {
+        "class_name": "pothole",
+        "category": "road_damage",
+        "confidence": 0.8295,
+        "confidence_percent": 83.0,
+        "bbox": [
+          174.9,
+          381.4,
+          597.4,
+          649.7
+        ]
+      }
+    ],
+    "model_version": "YOLO11n-municipal_detection-v1.0",
+    "last_updated": "2026-11-19"
+  },
+  {
+    "id": "CF-1058",
+    "description": "there is garbage left here, this should be cleaned immediately.",
+    "original_language": "en",
+    "language_name": "English",
+    "translated_description_en": "there is garbage left here, this should be cleaned immediately.",
+    "category_raw": "waste",
+    "category_display": "Garbage / Waste",
+    "secondary_categories": [],
+    "decision_reason": "Final category 'Garbage / Waste' confirmed from citizen description via NLP and corroborated by YOLO visual object detection (78%).",
+    "visual_evidence_summary": "Corroborated by YOLO Vision: Detected garbage (78%)",
+    "problem_title": "Garbage Accumulation / Overflowing Bin",
+    "department": "Sanitation & Waste Management Department",
+    "location_name": "GPS (31.3000, 75.6998)",
+    "city": "City Zone",
+    "latitude": 31.3,
+    "longitude": 75.69977,
+    "severity": "Low",
+    "priority": "P4",
+    "status": "Registered",
+    "citizen_reports_count": 1,
+    "ai_confidence": 0.93,
+    "needs_review": false,
+    "reported_date": "2026-11-18",
+    "photo_path": "data/uploads/CF-1058.jpg",
+    "annotated_photo_path": "data/uploads/CF-1058_annotated.jpg",
+    "detections": [
+      {
+        "class_name": "garbage",
+        "category": "waste",
+        "confidence": 0.7785,
+        "confidence_percent": 77.8,
+        "bbox": [
+          147.5,
+          722.2,
+          737.1,
+          1191.7
+        ]
+      },
+      {
+        "class_name": "garbage",
+        "category": "waste",
+        "confidence": 0.6762,
+        "confidence_percent": 67.6,
+        "bbox": [
+          199.6,
+          511.9,
+          797.1,
+          967.8
+        ]
+      }
+    ],
+    "model_version": "YOLO11n-municipal_detection-v1.0"
+  },
+  {
+    "id": "CF-1057",
+    "description": "there is so much garbage on the road as well as beside the road near the railway station. People are facing difficulty over passing through it, please clean it immediately.",
+    "original_language": "en",
+    "language_name": "English",
+    "translated_description_en": "there is so much garbage on the road as well as beside the road near the railway station. People are facing difficulty over passing through it, please clean it immediately.",
+    "category_raw": "waste",
+    "category_display": "Garbage / Waste",
+    "secondary_categories": [],
+    "decision_reason": "Final category 'Garbage / Waste' confirmed from citizen description via NLP and corroborated by YOLO visual object detection (72%).",
+    "visual_evidence_summary": "Corroborated by YOLO Vision: Detected garbage (72%)",
+    "problem_title": "Garbage Accumulation / Overflowing Bin",
+    "department": "Sanitation & Waste Management Department",
+    "location_name": "railway station",
+    "city": "City Zone",
+    "latitude": 31.25,
+    "longitude": 75.8,
+    "severity": "Low",
+    "priority": "P4",
+    "status": "Registered",
+    "citizen_reports_count": 1,
+    "ai_confidence": 0.89,
+    "needs_review": false,
+    "reported_date": "2026-11-18",
+    "photo_path": "data/uploads/CF-1057.jpg",
+    "annotated_photo_path": "data/uploads/CF-1057_annotated.jpg",
+    "detections": [
+      {
+        "class_name": "garbage",
+        "category": "waste",
+        "confidence": 0.7213,
+        "confidence_percent": 72.1,
+        "bbox": [
+          124.9,
+          210.0,
+          700.4,
+          448.4
+        ]
+      }
+    ],
+    "model_version": "YOLO11n-municipal_detection-v1.0"
+  },
+  {
+    "id": "CF-1056",
+    "description": "the garbage should be removed immediately near the bakery, they are in excessive amount, bad smell is coming from those packages",
+    "original_language": "en",
+    "language_name": "English",
+    "translated_description_en": "the garbage should be removed immediately near the bakery, they are in excessive amount, bad smell is coming from those packages",
+    "category_raw": "waste",
+    "category_display": "Garbage / Waste",
+    "secondary_categories": [],
+    "decision_reason": "Final category 'Garbage / Waste' confirmed from citizen description via NLP and corroborated by YOLO visual object detection (86%).",
+    "visual_evidence_summary": "Corroborated by YOLO Vision: Detected garbage (86%)",
+    "problem_title": "Garbage Accumulation / Overflowing Bin",
+    "department": "Sanitation & Waste Management Department",
+    "location_name": "bakery",
+    "city": "City Zone",
+    "latitude": 31.33,
+    "longitude": 75.77,
+    "severity": "Low",
+    "priority": "P4",
+    "status": "Registered",
+    "citizen_reports_count": 1,
+    "ai_confidence": 0.95,
+    "needs_review": false,
+    "reported_date": "2026-11-18",
+    "photo_path": "data/uploads/CF-1056.jpg",
+    "annotated_photo_path": "data/uploads/CF-1056_annotated.jpg",
+    "detections": [
+      {
+        "class_name": "garbage",
+        "category": "waste",
+        "confidence": 0.8599,
+        "confidence_percent": 86.0,
+        "bbox": [
+          37.8,
+          59.9,
+          523.3,
+          269.0
+        ]
+      }
+    ],
+    "model_version": "YOLO11n-municipal_detection-v1.0"
+  },
+  {
+    "id": "CF-1054",
+    "description": "there is a pot hole on the road near the railway station, vehicles facing difficulty over passing through it.",
+    "original_language": "en",
+    "language_name": "English",
+    "translated_description_en": "there is a pot hole on the road near the railway station, vehicles facing difficulty over passing through it.",
+    "category_raw": "road_damage",
+    "category_display": "Road Damage",
+    "secondary_categories": [],
+    "decision_reason": "Final category 'Road Damage' determined from citizen description via NLP.",
+    "visual_evidence_summary": "Visual evidence pending / no objects exceeded detection threshold.",
+    "problem_title": "Pothole / Road Surface Damage",
+    "department": "Road Maintenance Department",
+    "location_name": "Device GPS (31.2511, 75.6998)",
+    "city": "City Zone",
+    "latitude": 31.29,
+    "longitude": 75.64,
+    "severity": "Medium",
+    "priority": "P3",
+    "status": "Registered",
+    "citizen_reports_count": 1,
+    "ai_confidence": 0.98,
+    "needs_review": false,
+    "reported_date": "2026-11-16",
+    "photo_path": "data/uploads/CF-1054.jpg",
+    "annotated_photo_path": "data/uploads/CF-1054_annotated.jpg",
+    "detections": [
+      {
+        "class_name": "damaged_road",
+        "category": "road_damage",
+        "confidence": 0.7531,
+        "confidence_percent": 75.3,
+        "bbox": [
+          108.3,
+          362.3,
+          1530.9,
+          756.8
+        ]
+      },
+      {
+        "class_name": "damaged_road",
+        "category": "road_damage",
+        "confidence": 0.1993,
+        "confidence_percent": 19.9,
+        "bbox": [
+          183.5,
+          455.2,
+          1066.6,
+          828.9
+        ]
+      },
+      {
+        "class_name": "damaged_road",
+        "category": "road_damage",
+        "confidence": 0.1964,
+        "confidence_percent": 19.6,
+        "bbox": [
+          712.9,
+          480.8,
+          1404.3,
+          827.3
+        ]
+      }
+    ],
+    "model_version": "YOLO11n-municipal_detection-v1.0"
+  },
+  {
+    "id": "CF-1053",
+    "description": "some part of the road is damaged near the school gate",
+    "original_language": "en",
+    "language_name": "English",
+    "translated_description_en": "some part of the road is damaged near the school gate",
+    "category_raw": "road_damage",
+    "category_display": "Road Damage",
+    "secondary_categories": [],
+    "decision_reason": "Final category 'Road Damage' confirmed from citizen description via NLP and corroborated by YOLO visual object detection (44%).",
+    "visual_evidence_summary": "Corroborated by YOLO Vision: Detected pothole (44%)",
+    "problem_title": "Pothole / Road Surface Damage",
+    "department": "Road Maintenance Department",
+    "location_name": "Near School Gate",
+    "city": "City Zone",
+    "latitude": 31.19,
+    "longitude": 75.74,
+    "severity": "Medium",
+    "priority": "P3",
+    "status": "Registered",
+    "citizen_reports_count": 1,
+    "ai_confidence": 0.74,
+    "needs_review": false,
+    "reported_date": "2026-11-16",
+    "photo_path": "data/uploads/CF-1053.jpg",
+    "annotated_photo_path": "data/uploads/CF-1053_annotated.jpg",
+    "detections": [
+      {
+        "class_name": "pothole",
+        "category": "road_damage",
+        "confidence": 0.438,
+        "confidence_percent": 43.8,
+        "bbox": [
+          158.5,
+          152.9,
+          680.1,
+          469.3
+        ]
+      },
+      {
+        "class_name": "pothole",
+        "category": "road_damage",
+        "confidence": 0.3004,
+        "confidence_percent": 30.0,
+        "bbox": [
+          157.6,
+          40.8,
+          689.1,
+          312.5
+        ]
+      },
+      {
+        "class_name": "pothole",
+        "category": "road_damage",
+        "confidence": 0.2741,
+        "confidence_percent": 27.4,
+        "bbox": [
+          161.1,
+          255.7,
+          608.4,
+          578.0
+        ]
+      },
+      {
+        "class_name": "pothole",
+        "category": "road_damage",
+        "confidence": 0.2654,
+        "confidence_percent": 26.5,
+        "bbox": [
+          286.9,
+          17.7,
+          825.0,
+          425.0
+        ]
+      },
+      {
+        "class_name": "pothole",
+        "category": "road_damage",
+        "confidence": 0.2103,
+        "confidence_percent": 21.0,
+        "bbox": [
+          178.5,
+          423.3,
+          609.0,
+          679.2
+        ]
+      }
+    ],
+    "model_version": "YOLO11n-municipal_detection-v1.0"
+  },
+  {
+    "id": "CF-1052",
+    "description": "There are multiple deep potholes near the bakery.",
+    "original_language": "en",
+    "language_name": "English",
+    "translated_description_en": "There are multiple deep potholes near the bakery.",
+    "category_raw": "road_damage",
+    "category_display": "Road Damage",
+    "secondary_categories": [],
+    "decision_reason": "Final category 'Road Damage' confirmed from citizen description via NLP and corroborated by YOLO visual object detection (62%).",
+    "visual_evidence_summary": "Corroborated by YOLO Vision: Detected damaged_road (62%)",
+    "problem_title": "Pothole / Road Surface Damage",
+    "department": "Road Maintenance Department",
+    "location_name": "Device GPS (31.2510, 75.6998)",
+    "city": "City Zone",
+    "latitude": 31.29,
+    "longitude": 75.74,
+    "severity": "Medium",
+    "priority": "P3",
+    "status": "Registered",
+    "citizen_reports_count": 1,
+    "ai_confidence": 0.86,
+    "needs_review": false,
+    "reported_date": "2026-11-16",
+    "photo_path": "data/uploads/CF-1052.jpg",
+    "annotated_photo_path": "data/uploads/CF-1052_annotated.jpg",
+    "detections": [
+      {
+        "class_name": "damaged_road",
+        "category": "road_damage",
+        "confidence": 0.6199,
+        "confidence_percent": 62.0,
+        "bbox": [
+          4.8,
+          19.2,
+          573.7,
+          330.6
+        ]
+      },
+      {
+        "class_name": "pothole",
+        "category": "road_damage",
+        "confidence": 0.2792,
+        "confidence_percent": 27.9,
+        "bbox": [
+          185.2,
+          204.6,
+          389.0,
+          312.2
+        ]
+      },
+      {
+        "class_name": "pothole",
+        "category": "road_damage",
+        "confidence": 0.168,
+        "confidence_percent": 16.8,
+        "bbox": [
+          214.9,
+          89.3,
+          391.3,
+          167.9
+        ]
+      }
+    ],
+    "model_version": "YOLO11n-municipal_detection-v1.0"
+  }
+]

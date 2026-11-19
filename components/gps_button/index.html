@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: transparent;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            overflow: hidden;
+        }
+        .btn-container {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 4px 0;
+            flex-wrap: wrap;
+        }
+        .gps-btn {
+            background: linear-gradient(135deg, #0284c7, #0369a1);
+            color: #ffffff;
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            border-radius: 8px;
+            padding: 8px 18px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            box-shadow: 0 4px 12px rgba(2, 132, 199, 0.35);
+            transition: all 0.15s ease;
+            white-space: nowrap;
+        }
+        .gps-btn:hover {
+            background: linear-gradient(135deg, #0369a1, #075985);
+            transform: translateY(-1px);
+        }
+        .gps-btn:disabled {
+            opacity: 0.65;
+            cursor: not-allowed;
+            transform: none;
+        }
+        .status-msg {
+            font-size: 12px;
+            font-weight: 500;
+            color: #94a3b8;
+        }
+    </style>
+</head>
+<body>
+    <div class="btn-container">
+        <button id="gps-btn" class="gps-btn" onclick="requestGPS()">
+            <span>📍</span> Detect &amp; Auto-Fill My GPS Location
+        </button>
+        <span id="gps-status" class="status-msg"></span>
+    </div>
+
+    <script>
+        function sendToStreamlit(data) {
+            window.parent.postMessage({
+                isStreamlitMessage: true,
+                type: "streamlit:setComponentValue",
+                value: data
+            }, "*");
+        }
+
+        function setFrameHeight(height) {
+            window.parent.postMessage({
+                isStreamlitMessage: true,
+                type: "streamlit:setFrameHeight",
+                height: height
+            }, "*");
+        }
+
+        window.addEventListener("load", function() {
+            window.parent.postMessage({
+                isStreamlitMessage: true,
+                type: "streamlit:componentReady",
+                apiVersion: 1
+            }, "*");
+            setFrameHeight(45);
+        });
+
+        window.addEventListener("message", function(event) {
+            if (event.data && event.data.type === "streamlit:render") {
+                if (event.data.args && event.data.args.last_status) {
+                    var statusEl = document.getElementById("gps-status");
+                    if (statusEl && !statusEl.innerHTML) {
+                        statusEl.innerHTML = '<span style="color:#10b981;">' + event.data.args.last_status + '</span>';
+                    }
+                }
+            }
+        });
+
+        function requestGPS() {
+            var btn = document.getElementById("gps-btn");
+            var statusEl = document.getElementById("gps-status");
+
+            if (!navigator.geolocation) {
+                statusEl.innerHTML = '<span style="color:#ef4444;">❌ Geolocation is not supported in this browser.</span>';
+                sendToStreamlit({ error: "Geolocation is not supported in this browser." });
+                return;
+            }
+
+            btn.disabled = true;
+            statusEl.innerHTML = '<span style="color:#38bdf8;">📡 Requesting device GPS...</span>';
+
+            navigator.geolocation.getCurrentPosition(
+                function(position) {
+                    btn.disabled = false;
+                    var lat = position.coords.latitude;
+                    var lon = position.coords.longitude;
+                    var acc = Math.round(position.coords.accuracy);
+                    
+                    statusEl.innerHTML = '<span style="color:#10b981;">✓ Got GPS: ' + lat.toFixed(5) + 'N, ' + lon.toFixed(5) + 'E (±' + acc + 'm). Filling inputs now...</span>';
+                    
+                    sendToStreamlit({
+                        latitude: lat,
+                        longitude: lon,
+                        accuracy: acc,
+                        timestamp: Date.now()
+                    });
+                },
+                function(error) {
+                    btn.disabled = false;
+                    var msg = error.message;
+                    if (error.code === 1) {
+                        msg = "Permission denied. Please allow location access in your browser settings and reload.";
+                    } else if (error.code === 2) {
+                        msg = "Position unavailable. Please check your network or GPS connection.";
+                    } else if (error.code === 3) {
+                        msg = "Location request timed out. Please try again.";
+                    }
+                    statusEl.innerHTML = '<span style="color:#ef4444;">❌ ' + msg + '</span>';
+                    sendToStreamlit({ error: msg, timestamp: Date.now() });
+                },
+                { enableHighAccuracy: true, timeout: 15000, maximumAge: 0 }
+            );
+        }
+    </script>
+</body>
+</html>

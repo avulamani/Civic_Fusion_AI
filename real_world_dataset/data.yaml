@@ -1,0 +1,13 @@
+# CivicFusion AI Multi-Class Municipal Dataset
+path: C:/Users/kumar/Downloads/CivicFusion_AI_Backup/real_world_dataset
+train: images/train
+val: images/val
+test: images/test
+
+names:
+  0: pothole
+  1: damaged_road
+  2: open_manhole
+  3: open_drain
+  4: garbage
+  5: streetlight_damage

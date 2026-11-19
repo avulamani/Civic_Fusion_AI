@@ -1,0 +1,163 @@
+{
+  "model_name": "sentence-transformers/LaBSE",
+  "calibrated_threshold": 0.58,
+  "total_benchmark_pairs": 12,
+  "overall_metrics": {
+    "accuracy": 1.0,
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1_score": 1.0,
+    "true_positives": 6,
+    "false_positives": 0,
+    "true_negatives": 6,
+    "false_negatives": 0,
+    "false_duplicate_rate": 0.0,
+    "missed_duplicate_rate": 0.0
+  },
+  "pair_results": [
+    {
+      "pair_id": "DUP-001",
+      "language_pair": "EN-HI",
+      "categories": "road_damage vs road_damage",
+      "distance_meters": 43.9,
+      "expected_duplicate": true,
+      "predicted_duplicate": true,
+      "similarity": 0.7275,
+      "outcome": "TP",
+      "engine": "LaBSE",
+      "scenario": "Cross-lingual EN-HI: Same pothole within 40 meters"
+    },
+    {
+      "pair_id": "DUP-002",
+      "language_pair": "EN-TE",
+      "categories": "open_manhole vs open_manhole",
+      "distance_meters": 48.4,
+      "expected_duplicate": true,
+      "predicted_duplicate": true,
+      "similarity": 0.6433,
+      "outcome": "TP",
+      "engine": "LaBSE",
+      "scenario": "Cross-lingual EN-TE: Same open manhole within 50 meters"
+    },
+    {
+      "pair_id": "DUP-003",
+      "language_pair": "HI-TE",
+      "categories": "waste vs waste",
+      "distance_meters": 36.2,
+      "expected_duplicate": true,
+      "predicted_duplicate": true,
+      "similarity": 0.8358,
+      "outcome": "TP",
+      "engine": "LaBSE",
+      "scenario": "Cross-lingual HI-TE: Same garbage pile within 35 meters"
+    },
+    {
+      "pair_id": "DUP-004",
+      "language_pair": "EN-HI",
+      "categories": "streetlight_damage vs streetlight_damage",
+      "distance_meters": 50.6,
+      "expected_duplicate": true,
+      "predicted_duplicate": true,
+      "similarity": 0.8308,
+      "outcome": "TP",
+      "engine": "LaBSE",
+      "scenario": "Cross-lingual EN-HI: Same streetlight outage within 50 meters"
+    },
+    {
+      "pair_id": "DUP-005",
+      "language_pair": "EN-TE",
+      "categories": "water_leakage vs water_leakage",
+      "distance_meters": 22.0,
+      "expected_duplicate": true,
+      "predicted_duplicate": true,
+      "similarity": 0.8479,
+      "outcome": "TP",
+      "engine": "LaBSE",
+      "scenario": "Cross-lingual EN-TE: Same pipe burst within 25 meters"
+    },
+    {
+      "pair_id": "DUP-006",
+      "language_pair": "EN-EN",
+      "categories": "road_damage vs road_damage",
+      "distance_meters": 43.9,
+      "expected_duplicate": true,
+      "predicted_duplicate": true,
+      "similarity": 0.8721,
+      "outcome": "TP",
+      "engine": "LaBSE",
+      "scenario": "Monolingual EN-EN: Same pothole within 45 meters"
+    },
+    {
+      "pair_id": "NON-001",
+      "language_pair": "EN-EN",
+      "categories": "waste vs streetlight_damage",
+      "distance_meters": 0.0,
+      "expected_duplicate": false,
+      "predicted_duplicate": false,
+      "similarity": 0.5581,
+      "outcome": "TN",
+      "engine": "LaBSE",
+      "scenario": "Co-located Different Category: Garbage vs Streetlight at exact same GPS"
+    },
+    {
+      "pair_id": "NON-002",
+      "language_pair": "HI-HI",
+      "categories": "open_manhole vs water_leakage",
+      "distance_meters": 24.2,
+      "expected_duplicate": false,
+      "predicted_duplicate": false,
+      "similarity": 0.5291,
+      "outcome": "TN",
+      "engine": "LaBSE",
+      "scenario": "Co-located Different Category: Open Manhole vs Water Leakage in Hindi"
+    },
+    {
+      "pair_id": "NON-003",
+      "language_pair": "TE-TE",
+      "categories": "drain_blockage vs traffic_signal_damage",
+      "distance_meters": 14.6,
+      "expected_duplicate": false,
+      "predicted_duplicate": false,
+      "similarity": 0.6328,
+      "outcome": "TN",
+      "engine": "LaBSE",
+      "scenario": "Co-located Different Category: Drain Blockage vs Traffic Signal in Telugu"
+    },
+    {
+      "pair_id": "NON-004",
+      "language_pair": "EN-EN",
+      "categories": "road_damage vs road_damage",
+      "distance_meters": 20787.4,
+      "expected_duplicate": false,
+      "predicted_duplicate": false,
+      "similarity": 0.8021,
+      "outcome": "TN",
+      "engine": "LaBSE",
+      "scenario": "Identical Wording at Distant Coordinates: Phagwara vs Jalandhar (~20km)"
+    },
+    {
+      "pair_id": "NON-005",
+      "language_pair": "HI-HI",
+      "categories": "road_damage vs road_damage",
+      "distance_meters": 1638.8,
+      "expected_duplicate": false,
+      "predicted_duplicate": false,
+      "similarity": 0.7159,
+      "outcome": "TN",
+      "engine": "LaBSE",
+      "scenario": "Same Issue at Distant Spots: Gol Chowk vs Sugar Mill (1.6 km apart)"
+    },
+    {
+      "pair_id": "NON-006",
+      "language_pair": "EN-TE",
+      "categories": "waste vs waste",
+      "distance_meters": 20483.2,
+      "expected_duplicate": false,
+      "predicted_duplicate": false,
+      "similarity": 0.7626,
+      "outcome": "TN",
+      "engine": "LaBSE",
+      "scenario": "Semantically Similar in Different Cities: Phagwara vs Jalandhar (22 km)"
+    }
+  ]
+}

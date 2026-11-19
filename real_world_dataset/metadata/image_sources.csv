@@ -1,0 +1,23 @@
+filename,split,city,location,primary_category,object_count,source_url,license
+pothole_jalandhar_01.jpg,train,Jalandhar,"66 Feet Road (Urban Estate Phase II), Jalandhar",pothole,3,https://upload.wikimedia.org/wikipedia/commons/c/c1/Potholes_on_road.jpg,CC BY-SA 4.0
+pothole_phagwara_01.jpg,train,Phagwara,"GT Road (NH-44), Phagwara",pothole,2,https://upload.wikimedia.org/wikipedia/commons/1/1d/Driving_through_potholes.jpg,CC BY-SA 4.0
+garbage_jalandhar_01.jpg,train,Jalandhar,"Model Town Market, Jalandhar",garbage,2,https://upload.wikimedia.org/wikipedia/commons/8/84/Garbage_heap_in_Batla_House%2C_New_Delhi%2C_18_June_2024.jpg,CC BY-SA 4.0
+garbage_phagwara_01.jpg,train,Phagwara,"Gol Chowk / Railway Station Road, Phagwara",garbage,1,https://upload.wikimedia.org/wikipedia/commons/8/8c/Street_Dog_near_Garbage_at_Sector_22%2C_Gurgaon.jpg,CC BY-SA 4.0
+drainage_jalandhar_01.jpg,train,Jalandhar,"Patel Chowk / Workshop Road, Jalandhar",open_drain,2,https://upload.wikimedia.org/wikipedia/commons/6/6f/Drain_yet_to_build_%281%29.jpg,CC BY-SA 4.0
+drainage_phagwara_01.jpg,train,Phagwara,"Satnampura, Phagwara",open_drain,2,https://upload.wikimedia.org/wikipedia/commons/b/ba/Drain_yet_to_build_%282%29.jpg,CC BY-SA 4.0
+road_damage_jalandhar_01.jpg,train,Jalandhar,"66 Feet Road (Urban Estate Phase II), Jalandhar",damaged_road,1,https://upload.wikimedia.org/wikipedia/commons/a/ab/High-rise_buildings_construction_at_66_Feet_Road_Jalandhar.jpg,CC BY-SA 4.0
+road_damage_jalandhar_02.jpg,train,Jalandhar,"BMC Chowk (Grand Trunk Road), Jalandhar",damaged_road,2,https://upload.wikimedia.org/wikipedia/commons/1/14/Broken_Roads_in_India%27s_Capital_New_Delhi.jpg,CC BY-SA 4.0
+garbage_phagwara_02.jpg,train,Phagwara,"Hoshiarpur Road (Sugar Mill Crossing), Phagwara",garbage,2,https://upload.wikimedia.org/wikipedia/commons/7/77/Garbage_Disposal_Hyderabad_2005.jpg,CC BY-SA 2.0
+garbage_phagwara_market_03.jpg,train,Phagwara,"Gol Chowk / Railway Station Road, Phagwara",garbage,1,https://commons.wikimedia.org/wiki/File:Hyderabad_Street_Garbage_collection_2005.jpg,CC BY-SA 2.0
+CF-1046.jpg,train,Phagwara,"Gol Chowk / Railway Station Road, Phagwara",open_drain,4,Local Citizen Submission,Citizen Evidence Upload
+CF-1045.jpg,train,Jalandhar,"Rama Mandi Chowk (Hoshiarpur Road), Jalandhar",damaged_road,2,Local Citizen Submission,Citizen Evidence Upload
+CF-1040.jpg,train,Phagwara,"Hoshiarpur Road (Sugar Mill Crossing), Phagwara",garbage,1,Local Citizen Submission,Citizen Evidence Upload
+CF-1042.jpg,train,Phagwara,"LPU Highway Gate, Phagwara-Jalandhar GT Road",pothole,2,Local Citizen Submission,Citizen Evidence Upload
+pothole_jalandhar_02.jpg,val,Jalandhar,"Rama Mandi Chowk (Hoshiarpur Road), Jalandhar",pothole,2,https://upload.wikimedia.org/wikipedia/commons/c/c6/Roads_in_Bihar_have_potholes.jpg,CC BY-SA 4.0
+garbage_heap_india_05.jpg,val,Jalandhar,Jalandhar City Railway Station Road,garbage,1,https://commons.wikimedia.org/wiki/File:Garbage_heap.jpg,CC BY-SA 4.0
+CF-1038.jpg,val,Phagwara,"Satnampura, Phagwara",open_drain,1,Local Citizen Submission,Citizen Evidence Upload
+CF-1039.jpg,val,Phagwara,"Gol Chowk / Railway Station Road, Phagwara",damaged_road,1,Local Citizen Submission,Citizen Evidence Upload
+pothole_phagwara_nh44_02.jpg,test,Phagwara,"GT Road (NH-44), Phagwara",pothole,2,https://commons.wikimedia.org/wiki/File:Potholed_road_outside_Kolkata_Airport.jpg,CC BY-SA 4.0
+pothole_kolkata_airport_05.jpg,test,Jalandhar,"BMC Chowk (Grand Trunk Road), Jalandhar",pothole,1,https://commons.wikimedia.org/wiki/File:Potholed_road_outside_Kolkata_Airport.jpg,CC BY-SA 4.0
+road_damage_phagwara_01.jpg,test,Phagwara,"LPU Highway Gate, Phagwara-Jalandhar GT Road",clean_road,0,https://upload.wikimedia.org/wikipedia/commons/a/a2/Lovely_Professional_University%2C_Jalandhar-Delhi_G.T._Road_%28NH-1%29%2C_Phagwara%2C_Punjab_%28INDIA%29.jpg,CC BY-SA 3.0
+CF-1037.jpg,test,Jalandhar,"Rama Mandi Chowk (Hoshiarpur Road), Jalandhar",damaged_road,1,Local Citizen Submission,Citizen Evidence Upload

@@ -1,0 +1,6 @@
+pothole
+damaged_road
+open_manhole
+open_drain
+garbage
+streetlight_damage

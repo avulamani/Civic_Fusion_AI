@@ -1,0 +1,123 @@
+[
+  {
+    "filename": "pothole_jalandhar_01.jpg",
+    "relative_path": "data/municipal_images/potholes/jalandhar/pothole_jalandhar_01.jpg",
+    "category": "potholes",
+    "location": "jalandhar",
+    "source_url": "https://upload.wikimedia.org/wikipedia/commons/c/c1/Potholes_on_road.jpg",
+    "license": "CC BY-SA 4.0",
+    "verified_location": false,
+    "sample_type": "illustrative_sample",
+    "description": "Severe asphalt pothole cluster on two-lane Indian road"
+  },
+  {
+    "filename": "pothole_phagwara_01.jpg",
+    "relative_path": "data/municipal_images/potholes/phagwara/pothole_phagwara_01.jpg",
+    "category": "potholes",
+    "location": "phagwara",
+    "source_url": "https://upload.wikimedia.org/wikipedia/commons/1/1d/Driving_through_potholes.jpg",
+    "license": "CC BY-SA 4.0",
+    "verified_location": false,
+    "sample_type": "illustrative_sample",
+    "description": "Deep water-filled road pothole hazard during traffic"
+  },
+  {
+    "filename": "pothole_jalandhar_02.jpg",
+    "relative_path": "data/municipal_images/potholes/jalandhar/pothole_jalandhar_02.jpg",
+    "category": "potholes",
+    "location": "jalandhar",
+    "source_url": "https://upload.wikimedia.org/wikipedia/commons/c/c6/Roads_in_Bihar_have_potholes.jpg",
+    "license": "CC BY-SA 4.0",
+    "verified_location": false,
+    "sample_type": "illustrative_sample",
+    "description": "Large road crater and pavement breakdown"
+  },
+  {
+    "filename": "garbage_jalandhar_01.jpg",
+    "relative_path": "data/municipal_images/garbage/jalandhar/garbage_jalandhar_01.jpg",
+    "category": "garbage",
+    "location": "jalandhar",
+    "source_url": "https://upload.wikimedia.org/wikipedia/commons/8/84/Garbage_heap_in_Batla_House%2C_New_Delhi%2C_18_June_2024.jpg",
+    "license": "CC BY-SA 4.0",
+    "verified_location": false,
+    "sample_type": "illustrative_sample",
+    "description": "Massive municipal waste accumulation and roadside garbage heap"
+  },
+  {
+    "filename": "garbage_phagwara_01.jpg",
+    "relative_path": "data/municipal_images/garbage/phagwara/garbage_phagwara_01.jpg",
+    "category": "garbage",
+    "location": "phagwara",
+    "source_url": "https://upload.wikimedia.org/wikipedia/commons/8/8c/Street_Dog_near_Garbage_at_Sector_22%2C_Gurgaon.jpg",
+    "license": "CC BY-SA 4.0",
+    "verified_location": false,
+    "sample_type": "illustrative_sample",
+    "description": "Overflowing waste pile along public thoroughfare"
+  },
+  {
+    "filename": "garbage_phagwara_02.jpg",
+    "relative_path": "data/municipal_images/garbage/phagwara/garbage_phagwara_02.jpg",
+    "category": "garbage",
+    "location": "phagwara",
+    "source_url": "https://upload.wikimedia.org/wikipedia/commons/7/77/Garbage_Disposal_Hyderabad_2005.jpg",
+    "license": "CC BY-SA 2.0",
+    "verified_location": false,
+    "sample_type": "illustrative_sample",
+    "description": "Street garbage dump obstructing pedestrian path"
+  },
+  {
+    "filename": "drainage_jalandhar_01.jpg",
+    "relative_path": "data/municipal_images/drainage/jalandhar/drainage_jalandhar_01.jpg",
+    "category": "drainage",
+    "location": "jalandhar",
+    "source_url": "https://upload.wikimedia.org/wikipedia/commons/6/6f/Drain_yet_to_build_%281%29.jpg",
+    "license": "CC BY-SA 4.0",
+    "verified_location": false,
+    "sample_type": "illustrative_sample",
+    "description": "Open stormwater channel / uncompleted drainage trench"
+  },
+  {
+    "filename": "drainage_phagwara_01.jpg",
+    "relative_path": "data/municipal_images/drainage/phagwara/drainage_phagwara_01.jpg",
+    "category": "drainage",
+    "location": "phagwara",
+    "source_url": "https://upload.wikimedia.org/wikipedia/commons/b/ba/Drain_yet_to_build_%282%29.jpg",
+    "license": "CC BY-SA 4.0",
+    "verified_location": false,
+    "sample_type": "illustrative_sample",
+    "description": "Exposed drainage ditch roadside hazard"
+  },
+  {
+    "filename": "road_damage_jalandhar_01.jpg",
+    "relative_path": "data/municipal_images/road_damage/jalandhar/road_damage_jalandhar_01.jpg",
+    "category": "road_damage",
+    "location": "jalandhar",
+    "source_url": "https://upload.wikimedia.org/wikipedia/commons/a/ab/High-rise_buildings_construction_at_66_Feet_Road_Jalandhar.jpg",
+    "license": "CC BY-SA 4.0",
+    "verified_location": true,
+    "sample_type": "verified_location",
+    "description": "66 Feet Road Jalandhar infrastructure and roadside development"
+  },
+  {
+    "filename": "road_damage_phagwara_01.jpg",
+    "relative_path": "data/municipal_images/road_damage/phagwara/road_damage_phagwara_01.jpg",
+    "category": "road_damage",
+    "location": "phagwara",
+    "source_url": "https://upload.wikimedia.org/wikipedia/commons/a/a2/Lovely_Professional_University%2C_Jalandhar-Delhi_G.T._Road_%28NH-1%29%2C_Phagwara%2C_Punjab_%28INDIA%29.jpg",
+    "license": "CC BY-SA 3.0",
+    "verified_location": true,
+    "sample_type": "verified_location",
+    "description": "Jalandhar-Delhi G.T. Road (NH-1), Phagwara, Punjab road corridor"
+  },
+  {
+    "filename": "road_damage_jalandhar_02.jpg",
+    "relative_path": "data/municipal_images/road_damage/jalandhar/road_damage_jalandhar_02.jpg",
+    "category": "road_damage",
+    "location": "jalandhar",
+    "source_url": "https://upload.wikimedia.org/wikipedia/commons/1/14/Broken_Roads_in_India%27s_Capital_New_Delhi.jpg",
+    "license": "CC BY-SA 4.0",
+    "verified_location": false,
+    "sample_type": "illustrative_sample",
+    "description": "Broken road surface with exposed rubble and structural cracking"
+  }
+]

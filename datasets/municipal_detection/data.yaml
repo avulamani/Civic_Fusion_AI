@@ -1,0 +1,11 @@
+path: datasets/municipal_detection
+train: images/train
+val: images/val
+test: images/test
+names:
+  0: pothole
+  1: damaged_road
+  2: open_manhole
+  3: open_drain
+  4: garbage
+  5: streetlight_damage

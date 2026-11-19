@@ -1,0 +1,27 @@
+Image Name,Split,Category,Location,Source,License,Bounding Boxes Count
+"user_pothole_diagnostic.jpg","train","road_damage","Urban Road Corridor","Citizen Diagnostic Upload","Fair Use / Citizen Evidence",2
+"user_roadside_trench_diagnostic.jpg","train","open_drain","Market Front Corridor","Citizen Diagnostic Upload","Fair Use / Citizen Evidence",2
+"pothole_kolkata_airport_05.jpg","test","road_damage","Airport Access Road","Open Urban Road Dataset","CC BY-SA 4.0",2
+"garbage_heap_india_05.jpg","test","garbage","Model Town Road, Jalandhar","Open Civic Waste Repository","CC BY 4.0",1
+"road_damage_phagwara_01.jpg","test","clean_road","LPU Highway Corridor (NH-44), Phagwara","Survey Corridor Inspection","CC BY 4.0",0
+"CF-1037.jpg","test","road_damage","66 Feet Road (Urban Estate Phase II), Jalandhar","Municipal Work Order Record","Open Municipal Domain",1
+"pothole_jalandhar_02.jpg","val","road_damage","Patel Chowk & Workshop Road, Jalandhar","Municipal Survey","CC BY 4.0",2
+"drainage_jalandhar_01.jpg","val","open_drain","Jalandhar City Railway Station Road","Municipal Drainage Survey","CC BY-SA 4.0",1
+"garbage_phagwara_market_03.jpg","val","garbage","Banga Road Corridor, Phagwara","Market Waste Audit","CC BY 4.0",1
+"CF-1038.jpg","val","open_manhole","Satnampura Sub-Division, Phagwara","Municipal Ticket Record","Open Municipal Domain",2
+"pothole_phagwara_01.jpg","train","road_damage","GT Road (NH-44), Phagwara","Highway Inspection Survey","CC BY 4.0",2
+"pothole_jalandhar_01.jpg","train","road_damage","66 Feet Road (Urban Estate Phase II), Jalandhar","Urban Road Survey","CC BY-SA 4.0",3
+"pothole_phagwara_nh44_02.jpg","train","road_damage","Hoshiarpur Road & Sugar Mill Crossing, Phagwara","Survey Inspection","CC BY 4.0",2
+"CF-1042.jpg","train","road_damage","GT Road (NH-44), Phagwara","Municipal Ticket Record","Open Municipal Domain",2
+"road_damage_jalandhar_01.jpg","train","road_damage","Patel Chowk & Workshop Road, Jalandhar","Municipal PWD Survey","CC BY-SA 4.0",1
+"road_damage_jalandhar_02.jpg","train","road_damage","Rama Mandi Chowk (Hoshiarpur Road), Jalandhar","Municipal Road Audit","CC BY 4.0",2
+"CF-1045.jpg","train","road_damage","Rama Mandi Chowk (Hoshiarpur Road), Jalandhar","Municipal Ticket Record","Open Municipal Domain",1
+"drainage_phagwara_01.jpg","train","open_drain","Satnampura Sub-Division, Phagwara","Municipal Drainage Survey","CC BY-SA 4.0",2
+"CF-1046.jpg","train","open_drain","Gol Chowk & Station Road, Phagwara","Municipal Ticket Record","Open Municipal Domain",2
+"CF-1039.jpg","train","open_drain","BMC Chowk (GT Road Corridor), Jalandhar","Municipal Ticket Record","Open Municipal Domain",1
+"CF-1041.jpg","train","streetlight_damage","Model Town Market, Jalandhar","Municipal Ticket Record","Open Municipal Domain",1
+"garbage_phagwara_01.jpg","train","garbage","Gol Chowk & Station Road, Phagwara","Municipal Sanitation Survey","CC BY 4.0",1
+"garbage_phagwara_02.jpg","train","garbage","Hoshiarpur Road & Sugar Mill Crossing, Phagwara","Solid Waste Inspection","CC BY-SA 4.0",2
+"garbage_jalandhar_01.jpg","train","garbage","BMC Chowk (GT Road Corridor), Jalandhar","Sanitation Audit","CC BY 4.0",2
+"CF-1040.jpg","train","garbage","Hoshiarpur Road & Sugar Mill Crossing, Phagwara","Municipal Ticket Record","Open Municipal Domain",1
+"CF-1043.jpg","train","garbage","Gol Chowk & Station Road, Phagwara","Municipal Ticket Record","Open Municipal Domain",1

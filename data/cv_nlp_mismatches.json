@@ -1,0 +1,110 @@
+[
+  {
+    "ticket_id": "CF-TEST-9999",
+    "timestamp": "2026-11-10",
+    "citizen_description": "Deep pothole near bakery",
+    "original_language": "en",
+    "nlp_category": "road_damage",
+    "nlp_confidence": 0.92,
+    "cv_categories": [
+      "open_manhole"
+    ],
+    "cv_confidence": 0.94,
+    "final_category": "road_damage",
+    "photo_path": "data/uploads/CF-TEST-9999.jpg",
+    "model_version": "YOLO11n-Municipal-v2",
+    "decision_reason": "Classified as Pothole based on citizen ground-truth description.",
+    "annotation_status": "Queued for Manual Ground-Truth Bounding-Box Annotation",
+    "curation_note": "Awaiting manual verification of bounding-box coordinates before dataset ingestion."
+  },
+  {
+    "ticket_id": "TEST-1",
+    "timestamp": "2026-11-10",
+    "citizen_description": "test",
+    "original_language": "en",
+    "nlp_category": "road_damage",
+    "nlp_confidence": 0.9,
+    "cv_categories": [
+      "open_manhole"
+    ],
+    "cv_confidence": 0.8,
+    "final_category": "road_damage",
+    "photo_path": null,
+    "model_version": "",
+    "decision_reason": "",
+    "annotation_status": "Queued for Manual Ground-Truth Bounding-Box Annotation",
+    "curation_note": "Awaiting manual verification of bounding-box coordinates before dataset ingestion."
+  },
+  {
+    "ticket_id": "TEST-2",
+    "timestamp": "2026-11-10",
+    "citizen_description": "test2",
+    "original_language": "en",
+    "nlp_category": "road_damage",
+    "nlp_confidence": 0.9,
+    "cv_categories": [
+      "open_manhole"
+    ],
+    "cv_confidence": 0.8,
+    "final_category": "road_damage",
+    "photo_path": null,
+    "model_version": "",
+    "decision_reason": "",
+    "annotation_status": "Queued for Manual Ground-Truth Bounding-Box Annotation",
+    "curation_note": "Awaiting manual verification of bounding-box coordinates before dataset ingestion."
+  },
+  {
+    "ticket_id": "CF-USER-TEST-1054",
+    "timestamp": "2026-11-10",
+    "citizen_description": "there are multiple pot holes near bakery",
+    "original_language": "en",
+    "nlp_category": "road_damage",
+    "nlp_confidence": 0.72,
+    "cv_categories": [
+      "open_manhole"
+    ],
+    "cv_confidence": 0.94,
+    "final_category": "road_damage",
+    "photo_path": "data/uploads/CF-1054.jpg",
+    "model_version": "YOLO11n-Municipal-v2",
+    "decision_reason": "Final category 'Road Damage' determined from citizen description via NLP. Visual model's prediction ('Open Manhole' 94%) is retained as supplementary visual evidence and does not override the citizen's reported context.",
+    "annotation_status": "Queued for Manual Ground-Truth Bounding-Box Annotation",
+    "curation_note": "Awaiting manual verification of bounding-box coordinates before dataset ingestion."
+  },
+  {
+    "ticket_id": "CF-1052",
+    "timestamp": "2026-11-10",
+    "citizen_description": "There are multiple deep potholes near the bakery",
+    "original_language": "en",
+    "nlp_category": "road_damage",
+    "nlp_confidence": 0.92,
+    "cv_categories": [
+      "open_manhole"
+    ],
+    "cv_confidence": 0.945,
+    "final_category": "road_damage",
+    "photo_path": "data\\uploads\\CF-1052.jpg",
+    "model_version": "YOLO11n-municipal_issues-v3.0-multiclass",
+    "decision_reason": "Final category 'Road Damage' determined from citizen description via NLP. Visual model's prediction ('Open Manhole' 94%) is retained as supplementary visual evidence and does not override the citizen's reported context.",
+    "annotation_status": "Queued for Manual Ground-Truth Bounding-Box Annotation",
+    "curation_note": "Awaiting manual verification of bounding-box coordinates before dataset ingestion."
+  },
+  {
+    "ticket_id": "CF-1061",
+    "timestamp": "2026-11-19",
+    "citizen_description": "there is a large pothole on the road near the college. many vehicles are getting stuck in that.",
+    "original_language": "en",
+    "nlp_category": "road_damage",
+    "nlp_confidence": 1.0,
+    "cv_categories": [
+      "waste"
+    ],
+    "cv_confidence": 0.725,
+    "final_category": "road_damage",
+    "photo_path": "data\\uploads\\CF-1061.jpg",
+    "model_version": "YOLO11n-municipal_detection-v1.0",
+    "decision_reason": "Final category 'Road Damage' determined from citizen description via NLP. Visual model's prediction ('Garbage / Waste' 73%) is retained as supplementary visual evidence and does not override the citizen's reported context.",
+    "annotation_status": "Queued for Manual Ground-Truth Bounding-Box Annotation",
+    "curation_note": "Awaiting manual verification of bounding-box coordinates before dataset ingestion."
+  }
+]

@@ -1,0 +1,38 @@
+{
+  "model_v2": {
+    "weights_pt": "C:\\Users\\kumar\\Downloads\\CivicFusion_AI_Backup\\models\\municipal_issues_v2.pt",
+    "weights_onnx": "C:\\Users\\kumar\\Downloads\\CivicFusion_AI_Backup\\models\\municipal_issues_v2.onnx",
+    "classes": [
+      "garbage",
+      "pothole",
+      "open_drain",
+      "damaged_road"
+    ],
+    "validation": {
+      "precision": 0.0018092880716643095,
+      "recall": 0.5,
+      "mAP50": 0.2649128787878788,
+      "mAP50_95": 0.15851061772926528
+    },
+    "test": {
+      "precision": 0.002336448598130841,
+      "recall": 0.5,
+      "mAP50": 0.1281359649122807,
+      "mAP50_95": 0.03206359649122807
+    }
+  },
+  "baseline_model": {
+    "weights_pt": "models/municipal_issues.pt",
+    "classes": [
+      "waste_pile",
+      "pothole",
+      "open_manhole"
+    ],
+    "test": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "mAP50": 0.0,
+      "mAP50_95": 0.0
+    }
+  }
+}

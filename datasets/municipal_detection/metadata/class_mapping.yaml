@@ -1,0 +1,26 @@
+taxonomy:
+  Category A (Road Damage):
+    pothole: 'Class ID 0: Distinct holes/depressions in pavement'
+    damaged_road: 'Class ID 1: Cracks, alligator cracking, uneven eroded asphalt'
+  Category B (Manhole Problems):
+    open_manhole: 'Class ID 2: Open sewer chamber or missing manhole cover'
+  Category C (Drainage Problems):
+    open_drain: 'Class ID 3: Uncovered drainage ditch or open trench'
+  Category D (Garbage Problems):
+    garbage: 'Class ID 4: Municipal solid waste accumulation or overflowing bin'
+  Category E (Streetlight Problems):
+    streetlight_damage: 'Class ID 5: Broken fixture, leaning pole, or exposed wiring'
+class_ids:
+  pothole: 0
+  damaged_road: 1
+  open_manhole: 2
+  open_drain: 3
+  garbage: 4
+  streetlight_damage: 5
+domain_categories:
+  pothole: road_damage
+  damaged_road: road_damage
+  open_manhole: open_manhole
+  open_drain: open_drain
+  garbage: waste
+  streetlight_damage: streetlight_damage

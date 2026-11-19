@@ -1,0 +1,25 @@
+{
+  "hardware": {
+    "platform": "CPU-Only",
+    "cpu_count": 12,
+    "ram_total_mb": 16068.7,
+    "render_free_tier_target_limit_mb": 512.0
+  },
+  "model_disk_sizes_mb": {
+    "dedicated_yolo11n_onnx": 10.14,
+    "yolo_world_v2_baseline_onnx": 48.88,
+    "baseline_tfidf_joblib": 0.28,
+    "indicbert_weights_pt": 1061.49
+  },
+  "inference_latencies_ms": {
+    "yolo11n_onnx": 161.1,
+    "nlp_full_analysis_avg": 4388.0,
+    "tfidf_baseline": 7.06,
+    "duplicate_check": 27435.52
+  },
+  "fallbacks_verified": {
+    "tfidf_category_fallback": true,
+    "distance_boundary_filter": true,
+    "clean_negative_rejection": true
+  }
+}

@@ -1,0 +1,87 @@
+Image Name,Split,Primary Category,Width,Height,Bounding Boxes Count
+"CF-1039 - Copy.jpg","train","open_drain",640,400,1
+"CF-1039.jpg","train","open_drain",640,400,1
+"CF-1040 - Copy.jpg","train","garbage",640,400,1
+"CF-1040.jpg","train","garbage",640,400,1
+"CF-1041 - Copy.jpg","train","streetlight_damage",640,400,1
+"CF-1041.jpg","train","streetlight_damage",640,400,1
+"CF-1042 - Copy.jpg","train","pothole",640,400,1
+"CF-1042.jpg","train","pothole",640,400,1
+"CF-1043 - Copy.jpg","train","garbage",640,400,1
+"CF-1043.jpg","train","garbage",640,400,1
+"CF-1045 - Copy.jpg","train","damaged_road",496,279,1
+"CF-1045.jpg","train","damaged_road",496,279,1
+"CF-1046 - Copy.jpg","train","open_drain",1600,900,2
+"CF-1046.jpg","train","open_drain",1600,900,2
+"CF-1048 - Copy.jpg","train","pothole",1600,900,1
+"CF-1048.jpg","train","pothole",1600,900,1
+"CF-1049 - Copy.jpg","train","pothole",1600,900,1
+"CF-1049.jpg","train","pothole",1600,900,1
+"CF-1050 - Copy.jpg","train","pothole",900,1600,1
+"CF-1050.jpg","train","pothole",900,1600,1
+"CF-1051 - Copy.jpg","train","damaged_road",1600,900,1
+"CF-1051.jpg","train","damaged_road",1600,900,1
+"CF-1053 - Copy.jpg","train","pothole",622,350,3
+"CF-1053.jpg","train","pothole",900,1600,3
+"CF-1054.jpg","train","damaged_road",1600,900,1
+"CF-1056.jpg","train","garbage",612,344,1
+"CF-1057.jpg","train","garbage",800,532,1
+"CF-1058.jpg","train","garbage",900,1600,1
+"CF-1061.jpg","train","pothole",540,360,2
+"CF-1062.jpg","train","pothole",640,360,2
+"CF-1063.jpg","train","garbage",740,493,1
+"demo_manhole - Copy.jpg","train","open_manhole",640,400,1
+"demo_manhole.jpg","train","open_manhole",640,400,1
+"demo_trench - Copy.jpg","train","open_drain",651,535,1
+"demo_trench.jpg","train","open_drain",651,535,1
+"drainage_phagwara_01 - Copy.jpg","train","open_drain",2988,5312,2
+"drainage_phagwara_01.jpg","train","open_drain",2988,5312,2
+"garbage_jalandhar_01 - Copy.jpg","train","garbage",4000,3000,2
+"garbage_jalandhar_01.jpg","train","garbage",4000,3000,2
+"garbage_phagwara_01 - Copy.jpg","train","garbage",473,364,1
+"garbage_phagwara_01.jpg","train","garbage",473,364,1
+"garbage_phagwara_02 - Copy.jpg","train","garbage",1600,1200,2
+"garbage_phagwara_02.jpg","train","garbage",1600,1200,2
+"pothole_jalandhar_01 - Copy.jpg","train","pothole",5312,2988,2
+"pothole_jalandhar_01.jpg","train","pothole",5312,2988,2
+"pothole_jalandhar_02.jpg","train","pothole",4032,3024,1
+"pothole_kolkata_airport_05.jpg","train","pothole",4032,3024,1
+"pothole_phagwara_01 - Copy.jpg","train","pothole",5312,2988,1
+"pothole_phagwara_01.jpg","train","pothole",5312,2988,1
+"pothole_phagwara_nh44_02 - Copy.jpg","train","pothole",4032,3024,1
+"pothole_phagwara_nh44_02.jpg","train","pothole",4032,3024,1
+"road_damage_jalandhar_01 - Copy.jpg","train","damaged_road",1226,1762,1
+"road_damage_jalandhar_01.jpg","train","damaged_road",1226,1762,1
+"road_damage_jalandhar_02 - Copy.jpg","train","damaged_road",2592,1944,2
+"road_damage_jalandhar_02.jpg","train","damaged_road",2592,1944,2
+"user_pothole_diagnostic - Copy.jpg","train","pothole",1024,552,1
+"user_pothole_diagnostic.jpg","train","pothole",1024,552,1
+"user_pothole_dirt - Copy.jpg","train","pothole",900,1600,1
+"user_pothole_dirt.jpg","train","pothole",900,1600,1
+"user_pothole_hedge - Copy.jpg","train","pothole",920,515,1
+"user_pothole_hedge.jpg","train","pothole",920,515,1
+"user_roadside_trench_diagnostic - Copy.jpg","train","open_drain",651,535,2
+"user_roadside_trench_diagnostic.jpg","train","open_drain",651,535,1
+"CF-1038 - Copy.jpg","val","open_manhole",640,400,2
+"CF-1038.jpg","val","open_manhole",640,400,2
+"CF-1052 - Copy.jpg","val","open_manhole",622,350,2
+"CF-1052.jpg","val","open_manhole",622,350,2
+"CF-1057.jpg","val","garbage",800,532,1
+"demo_streetlight - Copy.jpg","val","streetlight_damage",640,400,1
+"demo_streetlight.jpg","val","streetlight_damage",640,400,1
+"drainage_jalandhar_01 - Copy.jpg","val","open_drain",2988,5312,1
+"drainage_jalandhar_01.jpg","val","open_drain",2988,5312,1
+"garbage_phagwara_market_03 - Copy.jpg","val","garbage",1600,1200,1
+"garbage_phagwara_market_03.jpg","val","garbage",1600,1200,1
+"pothole_jalandhar_02 - Copy.jpg","val","pothole",4032,3024,1
+"pothole_jalandhar_02.jpg","val","pothole",4032,3024,1
+"CF-1037 - Copy.jpg","test","damaged_road",640,400,1
+"CF-1037.jpg","test","damaged_road",640,400,1
+"demo_garbage - Copy.jpg","test","garbage",473,364,1
+"demo_garbage.jpg","test","garbage",473,364,1
+"garbage_heap_india_05 - Copy.jpg","test","garbage",3060,4080,1
+"garbage_heap_india_05.jpg","test","garbage",3060,4080,1
+"pothole_kolkata_airport_05 - Copy.jpg","test","pothole",4032,3024,1
+"pothole_kolkata_airport_05.jpg","test","pothole",4032,3024,1
+"road_damage_phagwara_01 - Copy.jpg","test","clean_negative",1280,824,0
+"road_damage_phagwara_01.jpg","test","clean_negative",1280,824,0

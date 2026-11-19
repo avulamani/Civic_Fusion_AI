@@ -1,0 +1,21 @@
+# CivicFusion AI Multi-Class Municipal Taxonomy
+categories:
+  Category A (Road Damage):
+    - pothole (ID 0): Distinct cavities, depressions, or holes in the road surface
+    - damaged_road (ID 1): Cracked, uneven, broken asphalt, or eroded road edges
+  Category B (Manhole Problems):
+    - open_manhole (ID 2): Uncovered, broken, or exposed circular/square manhole openings
+  Category C (Drainage Problems):
+    - open_drain (ID 3): Exposed drainage channels, storm drains, and dangerous roadside excavations/trenches
+  Category D (Garbage Problems):
+    - garbage (ID 4): Solid municipal waste piles, overflowing dumpsters, and roadside trash accumulations
+  Category E (Streetlight Problems):
+    - streetlight_damage (ID 5): Non-functional, damaged, leaning, or fallen streetlight poles and fixtures
+
+classes:
+  0: pothole
+  1: damaged_road
+  2: open_manhole
+  3: open_drain
+  4: garbage
+  5: streetlight_damage

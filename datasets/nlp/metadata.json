@@ -1,0 +1,25 @@
+{
+  "total_records": 1680,
+  "train_records": 1344,
+  "val_records": 168,
+  "test_records": 168,
+  "languages": {
+    "en": 560,
+    "hi": 560,
+    "te": 560
+  },
+  "categories": {
+    "road_damage": 210,
+    "open_manhole": 159,
+    "open_drain": 144,
+    "drain_blockage": 159,
+    "waste": 144,
+    "streetlight_damage": 144,
+    "water_leakage": 144,
+    "waterlogging": 144,
+    "damaged_sign": 144,
+    "traffic_signal_damage": 144,
+    "fallen_tree": 144
+  },
+  "compound_records": 60
+}

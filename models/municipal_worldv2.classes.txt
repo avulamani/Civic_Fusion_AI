@@ -1,0 +1,10 @@
+road_damage
+streetlight_damage
+waste
+open_manhole
+water_leakage
+damaged_sign
+drain_blockage
+traffic_signal_damage
+fallen_tree
+waterlogging
