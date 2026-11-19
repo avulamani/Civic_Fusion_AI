@@ -210,80 +210,61 @@ components.html(
 # Custom CSS with full dark/light theme adaptivity, White/Green/Blue Municipal Theme
 st.markdown(clean_html("""
 <style>
-  /* Light Mode Palette (Default) */
-  :root {
-      --civic-blue: #1d4ed8;
-      --civic-blue-hover: #1e40af;
-      --civic-blue-light: rgba(37, 99, 235, 0.08);
+  /* Base Municipal Theme Variables directly bound to Streamlit Theme Variables */
+  :root, .stApp {
+      --civic-blue: #2563eb;
+      --civic-blue-hover: #1d4ed8;
+      --civic-blue-light: rgba(37, 99, 235, 0.10);
       --civic-green: #059669;
       --civic-green-hover: #047857;
       --civic-green-light: rgba(16, 185, 129, 0.10);
       --civic-white: #ffffff;
-      --civic-card-bg: #ffffff;
-      --civic-card-border: rgba(37, 99, 235, 0.20);
-      --civic-card-shadow: 0 4px 18px rgba(29, 78, 216, 0.05);
-      --civic-text-title: #0f172a;
-      --civic-text-body: #1e293b;
-      --civic-text-sub: #475569;
+      --civic-card-bg: var(--background-color, #ffffff);
+      --civic-card-border: rgba(37, 99, 235, 0.22);
+      --civic-card-shadow: 0 4px 18px rgba(0, 0, 0, 0.06);
+      --civic-text-title: var(--text-color, #0f172a);
+      --civic-text-body: var(--text-color, #1e293b);
+      --civic-text-sub: var(--text-color, #64748b);
       --civic-text-label: #64748b;
-      --civic-desc-bg: #f8fafc;
-      --civic-desc-border: rgba(37, 99, 235, 0.18);
-      --civic-desc-text: #0f172a;
+      --civic-desc-bg: rgba(37, 99, 235, 0.06);
+      --civic-desc-border: rgba(37, 99, 235, 0.20);
+      --civic-desc-text: var(--text-color, #0f172a);
       --civic-divider: rgba(148, 163, 184, 0.22);
       --civic-step-pending-bg: rgba(241, 245, 249, 0.85);
       --civic-step-pending-text: #475569;
-      --civic-review-bg: linear-gradient(135deg, rgba(29, 78, 216, 0.05) 0%, rgba(5, 150, 105, 0.05) 100%);
-      --civic-sidebar-bg: #f8fafc;
-      --civic-sidebar-card: #ffffff;
-      --civic-sidebar-card-border: rgba(37, 99, 235, 0.20);
-      --civic-sidebar-text: #0f172a;
-      --civic-sidebar-subtext: #475569;
-      --civic-sidebar-hover-bg: #eff6ff;
-      --civic-sidebar-hover-border: #1d4ed8;
-      --civic-sidebar-hover-text: #1d4ed8;
-      --civic-sidebar-active-bg: linear-gradient(135deg, rgba(29, 78, 216, 0.10) 0%, rgba(5, 150, 105, 0.08) 100%);
-      --civic-sidebar-active-border: #1d4ed8;
-      --civic-sidebar-active-text: #1d4ed8;
+      --civic-review-bg: linear-gradient(135deg, rgba(37, 99, 235, 0.08) 0%, rgba(16, 185, 129, 0.08) 100%);
+      --civic-sidebar-bg: var(--secondary-background-color, #f8fafc);
+      --civic-sidebar-card: var(--background-color, #ffffff);
+      --civic-sidebar-card-border: rgba(37, 99, 235, 0.22);
+      --civic-sidebar-text: var(--text-color, #0f172a);
+      --civic-sidebar-subtext: var(--text-color, #475569);
+      --civic-sidebar-hover-bg: rgba(37, 99, 235, 0.12);
+      --civic-sidebar-hover-border: #2563eb;
+      --civic-sidebar-hover-text: #2563eb;
+      --civic-sidebar-active-bg: linear-gradient(135deg, rgba(37, 99, 235, 0.20) 0%, rgba(16, 185, 129, 0.15) 100%);
+      --civic-sidebar-active-border: #2563eb;
+      --civic-sidebar-active-text: #2563eb;
   }
 
-  /* Dark Mode Palette (OS preference + Streamlit dark setting) */
+  /* When Streamlit or the user environment is in Dark Mode */
   @media (prefers-color-scheme: dark) {
-      :root {
+      :root, .stApp {
           --civic-blue: #3b82f6;
           --civic-blue-hover: #60a5fa;
           --civic-blue-light: rgba(59, 130, 246, 0.15);
           --civic-green: #10b981;
           --civic-green-hover: #34d399;
           --civic-green-light: rgba(16, 185, 129, 0.15);
-          --civic-white: #0e1117;
-          --civic-card-bg: #1e293b;
-          --civic-card-border: rgba(59, 130, 246, 0.28);
+          --civic-card-border: rgba(59, 130, 246, 0.30);
           --civic-card-shadow: 0 4px 18px rgba(0, 0, 0, 0.40);
-          --civic-text-title: #f8fafc;
-          --civic-text-body: #e2e8f0;
-          --civic-text-sub: #94a3b8;
-          --civic-text-label: #94a3b8;
-          --civic-desc-bg: #0f172a;
-          --civic-desc-border: rgba(59, 130, 246, 0.25);
-          --civic-desc-text: #f8fafc;
-          --civic-divider: rgba(148, 163, 184, 0.18);
-          --civic-step-pending-bg: #1e293b;
-          --civic-step-pending-text: #94a3b8;
-          --civic-review-bg: linear-gradient(135deg, rgba(29, 78, 216, 0.18) 0%, rgba(5, 150, 105, 0.12) 100%);
-          --civic-sidebar-bg: #0e1117;
-          --civic-sidebar-card: #1e293b;
-          --civic-sidebar-card-border: rgba(59, 130, 246, 0.30);
-          --civic-sidebar-text: #f8fafc;
-          --civic-sidebar-subtext: #cbd5e1;
-          --civic-sidebar-hover-bg: #1e3a5f;
-          --civic-sidebar-hover-border: #3b82f6;
-          --civic-sidebar-hover-text: #93c5fd;
-          --civic-sidebar-active-bg: linear-gradient(135deg, rgba(29, 78, 216, 0.30) 0%, rgba(5, 150, 105, 0.20) 100%);
-          --civic-sidebar-active-border: #3b82f6;
+          --civic-desc-bg: rgba(37, 99, 235, 0.12);
+          --civic-desc-border: rgba(59, 130, 246, 0.30);
+          --civic-review-bg: linear-gradient(135deg, rgba(37, 99, 235, 0.20) 0%, rgba(16, 185, 129, 0.15) 100%);
           --civic-sidebar-active-text: #60a5fa;
       }
   }
 
+  /* Support Streamlit data-theme="dark" attribute if present */
   html[data-theme="dark"],
   .stApp[data-theme="dark"],
   [data-theme="dark"] {
@@ -293,31 +274,11 @@ st.markdown(clean_html("""
       --civic-green: #10b981;
       --civic-green-hover: #34d399;
       --civic-green-light: rgba(16, 185, 129, 0.15);
-      --civic-white: #0e1117;
-      --civic-card-bg: #1e293b;
-      --civic-card-border: rgba(59, 130, 246, 0.28);
+      --civic-card-border: rgba(59, 130, 246, 0.30);
       --civic-card-shadow: 0 4px 18px rgba(0, 0, 0, 0.40);
-      --civic-text-title: #f8fafc;
-      --civic-text-body: #e2e8f0;
-      --civic-text-sub: #94a3b8;
-      --civic-text-label: #94a3b8;
-      --civic-desc-bg: #0f172a;
-      --civic-desc-border: rgba(59, 130, 246, 0.25);
-      --civic-desc-text: #f8fafc;
-      --civic-divider: rgba(148, 163, 184, 0.18);
-      --civic-step-pending-bg: #1e293b;
-      --civic-step-pending-text: #94a3b8;
-      --civic-review-bg: linear-gradient(135deg, rgba(29, 78, 216, 0.18) 0%, rgba(5, 150, 105, 0.12) 100%);
-      --civic-sidebar-bg: #0e1117;
-      --civic-sidebar-card: #1e293b;
-      --civic-sidebar-card-border: rgba(59, 130, 246, 0.30);
-      --civic-sidebar-text: #f8fafc;
-      --civic-sidebar-subtext: #cbd5e1;
-      --civic-sidebar-hover-bg: #1e3a5f;
-      --civic-sidebar-hover-border: #3b82f6;
-      --civic-sidebar-hover-text: #93c5fd;
-      --civic-sidebar-active-bg: linear-gradient(135deg, rgba(29, 78, 216, 0.30) 0%, rgba(5, 150, 105, 0.20) 100%);
-      --civic-sidebar-active-border: #3b82f6;
+      --civic-desc-bg: rgba(37, 99, 235, 0.12);
+      --civic-desc-border: rgba(59, 130, 246, 0.30);
+      --civic-review-bg: linear-gradient(135deg, rgba(37, 99, 235, 0.20) 0%, rgba(16, 185, 129, 0.15) 100%);
       --civic-sidebar-active-text: #60a5fa;
   }
 
@@ -382,9 +343,12 @@ st.markdown(clean_html("""
   }
 
   /* Left Sidebar: Theme-Adaptive Municipal Styling */
-  [data-testid="stSidebar"] {
-      background-color: var(--civic-sidebar-bg) !important;
-      border-right: 1px solid var(--civic-divider) !important;
+  [data-testid="stSidebar"],
+  [data-testid="stSidebar"] > div,
+  [data-testid="stSidebarContent"],
+  section[data-testid="stSidebar"] {
+      background-color: var(--secondary-background-color, #f8fafc) !important;
+      border-right: 1px solid var(--civic-divider, rgba(148, 163, 184, 0.22)) !important;
   }
 
   /* Sidebar Top Branding & Captions (Always 100% visible in both light & dark mode) */
@@ -395,21 +359,22 @@ st.markdown(clean_html("""
   .civic-brand-title {
       font-size: 1.55rem;
       font-weight: 800;
-      color: var(--civic-sidebar-text) !important;
+      color: var(--text-color, #0f172a) !important;
       letter-spacing: -0.02em;
       line-height: 1.25;
   }
   .civic-brand-subtitle {
       font-size: 0.82rem;
       font-weight: 500;
-      color: var(--civic-sidebar-subtext) !important;
+      color: var(--text-color, #475569) !important;
+      opacity: 0.85;
       margin-top: 4px;
       line-height: 1.35;
   }
   [data-testid="stSidebar"] h1,
   [data-testid="stSidebar"] h2,
   [data-testid="stSidebar"] h3 {
-      color: var(--civic-sidebar-text) !important;
+      color: var(--text-color, #0f172a) !important;
       font-weight: 800 !important;
       letter-spacing: -0.02em !important;
   }
@@ -417,18 +382,18 @@ st.markdown(clean_html("""
   [data-testid="stSidebar"] span,
   [data-testid="stSidebar"] [data-testid="stCaptionContainer"] p,
   [data-testid="stSidebar"] [data-testid="stMarkdownContainer"] p {
-      color: var(--civic-sidebar-subtext) !important;
+      color: var(--text-color, #475569) !important;
   }
 
   [data-testid="stSidebar"] [data-testid="stRadio"] > div {
       gap: 12px;
   }
   [data-testid="stSidebar"] [data-testid="stRadio"] label {
-      background: var(--civic-sidebar-card) !important;
-      border: 1.5px solid var(--civic-sidebar-card-border) !important;
+      background: var(--background-color, #ffffff) !important;
+      border: 1.5px solid rgba(37, 99, 235, 0.25) !important;
       border-radius: 12px !important;
       padding: 12px 16px !important;
-      color: var(--civic-sidebar-text) !important;
+      color: var(--text-color, #0f172a) !important;
       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04) !important;
       transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
       cursor: pointer !important;
@@ -438,55 +403,55 @@ st.markdown(clean_html("""
   [data-testid="stSidebar"] [data-testid="stRadio"] label p,
   [data-testid="stSidebar"] [data-testid="stRadio"] label span,
   [data-testid="stSidebar"] [data-testid="stRadio"] label div {
-      color: var(--civic-sidebar-text) !important;
+      color: var(--text-color, #0f172a) !important;
       font-weight: 600 !important;
   }
   
   /* Left Sidebar Navigation HOVER */
   [data-testid="stSidebar"] [data-testid="stRadio"] label:hover {
-      background: var(--civic-sidebar-hover-bg) !important;
-      border-color: var(--civic-sidebar-hover-border) !important;
-      color: var(--civic-sidebar-hover-text) !important;
+      background: rgba(37, 99, 235, 0.12) !important;
+      border-color: #2563eb !important;
       transform: translateX(4px) !important;
-      box-shadow: 0 4px 16px rgba(29, 78, 216, 0.18) !important;
+      box-shadow: 0 4px 16px rgba(37, 99, 235, 0.18) !important;
   }
   [data-testid="stSidebar"] [data-testid="stRadio"] label:hover p,
   [data-testid="stSidebar"] [data-testid="stRadio"] label:hover span,
   [data-testid="stSidebar"] [data-testid="stRadio"] label:hover div {
-      color: var(--civic-sidebar-hover-text) !important;
+      color: #2563eb !important;
       font-weight: 700 !important;
   }
   
   /* Left Sidebar Navigation ACTIVE */
   [data-testid="stSidebar"] [data-testid="stRadio"] label:has(input:checked) {
-      background: var(--civic-sidebar-active-bg) !important;
-      border: 2px solid var(--civic-sidebar-active-border) !important;
-      box-shadow: 0 4px 14px rgba(29, 78, 216, 0.15) !important;
+      background: linear-gradient(135deg, rgba(37, 99, 235, 0.20) 0%, rgba(16, 185, 129, 0.15) 100%) !important;
+      border: 2px solid #2563eb !important;
+      box-shadow: 0 4px 16px rgba(37, 99, 235, 0.22) !important;
   }
   [data-testid="stSidebar"] [data-testid="stRadio"] label:has(input:checked) p,
-  [data-testid="stSidebar"] [data-testid="stRadio"] label:has(input:checked) span {
-      color: var(--civic-sidebar-active-text) !important;
-      font-weight: 700 !important;
+  [data-testid="stSidebar"] [data-testid="stRadio"] label:has(input:checked) span,
+  [data-testid="stSidebar"] [data-testid="stRadio"] label:has(input:checked) div {
+      color: #2563eb !important;
+      font-weight: 800 !important;
   }
 
   /* Expander inside Sidebar */
   [data-testid="stSidebar"] [data-testid="stExpander"] {
-      background: var(--civic-sidebar-card) !important;
-      border: 1.5px solid var(--civic-sidebar-card-border) !important;
+      background: var(--background-color, #ffffff) !important;
+      border: 1.5px solid rgba(37, 99, 235, 0.25) !important;
       border-radius: 12px !important;
   }
   [data-testid="stSidebar"] [data-testid="stExpander"] summary p,
   [data-testid="stSidebar"] [data-testid="stExpander"] summary span {
-      color: var(--civic-sidebar-text) !important;
+      color: var(--text-color, #0f172a) !important;
       font-weight: 600 !important;
   }
   [data-testid="stSidebar"] [data-testid="stExpander"] [data-testid="stExpanderDetails"] {
-      background: var(--civic-sidebar-card) !important;
+      background: var(--background-color, #ffffff) !important;
   }
 
   /* Sidebar Action / Logout Button */
   [data-testid="stSidebar"] button {
-      background: var(--civic-sidebar-card) !important;
+      background: var(--background-color, #ffffff) !important;
       border: 1.5px solid rgba(220, 38, 38, 0.40) !important;
       color: #dc2626 !important;
       font-weight: 600 !important;
@@ -510,8 +475,8 @@ st.markdown(clean_html("""
 
   /* Metric KPI Cards with Top Accent */
   [data-testid="stMetric"] {
-      background: var(--civic-card-bg) !important;
-      border: 1.5px solid var(--civic-card-border) !important;
+      background: var(--background-color, #ffffff) !important;
+      border: 1.5px solid rgba(37, 99, 235, 0.22) !important;
       border-top: 4px solid var(--civic-blue) !important;
       padding: 16px 20px;
       border-radius: 14px;
@@ -523,12 +488,13 @@ st.markdown(clean_html("""
       border-top-color: var(--civic-green) !important;
   }
   [data-testid="stMetric"] [data-testid="stMetricLabel"] {
-      color: var(--civic-text-sub) !important;
+      color: var(--text-color, #475569) !important;
+      opacity: 0.85;
       font-weight: 600 !important;
   }
   [data-testid="stMetric"] [data-testid="stMetricValue"] {
-      color: var(--civic-text-title) !important;
-      font-weight: 700 !important;
+      color: var(--text-color, #0f172a) !important;
+      font-weight: 800 !important;
   }
 
   /* Workflow Stepper Bar */
@@ -2004,20 +1970,47 @@ def show_citizen_intake():
         # Duplicate Banner or New Ticket Success Banner
         if dup_check.get("is_duplicate"):
             st.markdown(clean_html(f"""
-            <div class="duplicate-pill">
-              <b>⚠️ DUPLICATE COMPLAINT DETECTED & CLUSTERED:</b><br/>
-              This issue matches active Ticket <b>{dup_check['parent_id']}</b> located only <b>{dup_check['distance_meters']} meters away</b> with <b>{dup_check['text_similarity']:.0%} semantic similarity</b>.<br/>
-              The municipality has clustered your report to prevent redundant work orders and <b>escalated priority to {fusion_result['priority']}</b>!
+            <div style="background:linear-gradient(135deg, rgba(245,158,11,0.18), rgba(217,119,6,0.12));
+                 border:2px solid #f59e0b; border-radius:14px; padding:18px 22px; margin-bottom:18px; box-shadow:0 4px 16px rgba(245,158,11,0.15);">
+              <div style="display:flex; align-items:center; gap:8px; margin-bottom:8px;">
+                <span style="font-size:1.35rem;">⚠️</span>
+                <h4 style="margin:0; color:#f59e0b; font-size:1.15rem; font-weight:800;">
+                  Duplicate Complaint Detected & Clustered!
+                </h4>
+              </div>
+              <div style="color:var(--civic-text-body, #e2e8f0); font-size:0.98rem; font-weight:600; line-height:1.6;">
+                This issue matches active Ticket 
+                <span style="background:rgba(37,99,235,0.22); color:#3b82f6; border:1.5px solid #3b82f6; padding:2px 8px; border-radius:6px; font-weight:800;">
+                  🎫 {dup_check['parent_id']}
+                </span> 
+                located only <b>{dup_check['distance_meters']} meters away</b> with <b>{dup_check['text_similarity']:.0%} semantic similarity</b>.<br/>
+                The municipality clustered your report to prevent duplicate work orders and 
+                <span style="background:rgba(239,68,68,0.20); color:#ef4444; border:1.5px solid #ef4444; padding:2px 8px; border-radius:6px; font-weight:800;">
+                  escalated priority to {fusion_result['priority']}
+                </span>!
+              </div>
             </div>
             """), unsafe_allow_html=True)
         else:
             st.markdown(clean_html(f"""
-            <div style="background:linear-gradient(135deg, rgba(5,150,105,0.14), rgba(16,185,129,0.08));
-                 border:1.5px solid #059669; border-radius:12px; padding:16px 20px; margin-bottom:16px;">
-                <h4 style="margin:0; color:#059669;">✅ Unique Civic Problem Registered & Dispatched!</h4>
-                <p style="margin:4px 0 0 0; color:#0f172a; font-weight:600;">
-                    Municipal Work Order <b>{ticket_id}</b> created and routed to <code>{fusion_result['department']}</code>.
-                </p>
+            <div style="background:linear-gradient(135deg, rgba(5,150,105,0.18), rgba(16,185,129,0.12));
+                 border:2px solid #10b981; border-radius:14px; padding:18px 22px; margin-bottom:18px; box-shadow:0 4px 16px rgba(5,150,105,0.15);">
+                <div style="display:flex; align-items:center; gap:8px; margin-bottom:8px;">
+                    <span style="font-size:1.35rem;">✅</span>
+                    <h4 style="margin:0; color:#10b981; font-size:1.15rem; font-weight:800; letter-spacing:-0.01em;">
+                        Unique Civic Problem Registered & Dispatched!
+                    </h4>
+                </div>
+                <div style="color:var(--civic-text-body, #e2e8f0); font-size:1.02rem; font-weight:600; line-height:1.6;">
+                    Municipal Work Order 
+                    <span style="background:rgba(37,99,235,0.22); color:#3b82f6; border:1.5px solid #3b82f6; padding:3px 12px; border-radius:8px; font-weight:800; font-size:1.12rem; letter-spacing:0.04em; display:inline-block; margin:0 4px;">
+                        🎫 {ticket_id}
+                    </span> 
+                    created and successfully routed to 
+                    <span style="background:rgba(16,185,129,0.18); color:#10b981; border:1.5px solid #10b981; padding:3px 10px; border-radius:8px; font-weight:700; display:inline-block; margin-left:4px;">
+                        🏛️ {fusion_result['department']}
+                    </span>.
+                </div>
             </div>
             """), unsafe_allow_html=True)
 
@@ -2103,7 +2096,85 @@ def show_citizen_intake():
 
         with res_col2:
             st.markdown("#### 📋 Final Generated Municipal Ticket")
-            st.markdown(f'<div class="ticket-box">{fusion_result["ascii_card"]}</div>', unsafe_allow_html=True)
+            
+            prio_color = "#ef4444" if fusion_result.get("priority") == "P1" else ("#f97316" if fusion_result.get("priority") == "P2" else ("#eab308" if fusion_result.get("priority") == "P3" else "#10b981"))
+            loc_clean = loc_name.strip() if (loc_name and loc_name.strip()) else (f"GPS ({latitude:.4f}, {longitude:.4f})" if (latitude != 0.0 or longitude != 0.0) else "City Incident Zone")
+            comp_conf_pct = round(fusion_result.get("composite_confidence", 0.85) * 100)
+
+            st.markdown(clean_html(f"""
+            <div style="background:var(--civic-card-bg, #ffffff); border:2px solid var(--civic-card-border, rgba(37,99,235,0.25)); border-radius:16px; padding:20px 22px; box-shadow:var(--civic-card-shadow, 0 6px 22px rgba(0,0,0,0.06)); margin-bottom:18px;">
+              <!-- Header -->
+              <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1.5px solid var(--civic-divider, rgba(148,163,184,0.22)); padding-bottom:12px; margin-bottom:14px; flex-wrap:wrap; gap:8px;">
+                <div style="display:flex; align-items:center; gap:8px;">
+                  <span style="font-size:1.35rem;">🏛️</span>
+                  <div>
+                    <div style="font-size:1.02rem; font-weight:800; color:var(--text-color, #0f172a); letter-spacing:-0.01em;">MUNICIPAL COMPLAINT WORK ORDER</div>
+                    <div style="font-size:0.76rem; color:var(--text-color, #475569); opacity:0.85;">Official AI Municipal Dispatch • City Corporation</div>
+                  </div>
+                </div>
+                <div style="background:rgba(16,185,129,0.16); color:#10b981; border:1.5px solid #10b981; padding:3px 12px; border-radius:20px; font-size:0.80rem; font-weight:700;">
+                  📋 Registered
+                </div>
+              </div>
+
+              <!-- HIGHLIGHTED TICKET ID (Primary Citizen Tracking Reference) -->
+              <div style="background:linear-gradient(135deg, rgba(37,99,235,0.16) 0%, rgba(5,150,105,0.12) 100%); border:2px solid #2563eb; border-radius:12px; padding:14px 18px; margin-bottom:16px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
+                <div>
+                  <div style="font-size:0.74rem; font-weight:800; text-transform:uppercase; letter-spacing:0.06em; color:var(--text-color, #475569); opacity:0.85;">
+                    YOUR OFFICIAL TRACKING TICKET ID
+                  </div>
+                  <div style="font-size:1.85rem; font-weight:900; color:#2563eb; letter-spacing:0.04em; margin-top:2px;">
+                    🎫 {ticket_id}
+                  </div>
+                </div>
+                <div style="text-align:right;">
+                  <div style="background:#2563eb; color:#ffffff; padding:5px 12px; border-radius:8px; font-size:0.80rem; font-weight:700;">
+                    🔍 Track My Complaint
+                  </div>
+                  <div style="font-size:0.73rem; color:var(--text-color, #475569); opacity:0.85; margin-top:3px;">
+                    Save this ID to check live status in sidebar
+                  </div>
+                </div>
+              </div>
+
+              <!-- 2x2 Clean Details Grid -->
+              <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(170px, 1fr)); gap:10px; margin-bottom:14px;">
+                <div style="background:rgba(37,99,235,0.06); border:1px solid rgba(37,99,235,0.20); border-radius:10px; padding:10px 12px;">
+                  <div style="font-size:0.72rem; font-weight:700; text-transform:uppercase; color:#64748b;">🏷️ Category & Problem</div>
+                  <div style="font-size:0.90rem; font-weight:700; color:var(--text-color, #0f172a); margin-top:2px;">{fusion_result['category_display']}</div>
+                  <div style="font-size:0.78rem; color:var(--text-color, #475569); opacity:0.85; margin-top:1px;">{fusion_result['problem_title']}</div>
+                </div>
+
+                <div style="background:rgba(37,99,235,0.06); border:1px solid rgba(37,99,235,0.20); border-radius:10px; padding:10px 12px;">
+                  <div style="font-size:0.72rem; font-weight:700; text-transform:uppercase; color:#64748b;">⚠️ Severity & Priority</div>
+                  <div style="font-size:0.90rem; font-weight:700; color:{prio_color}; margin-top:2px;">{fusion_result['priority']} ({fusion_result['severity']})</div>
+                  <div style="font-size:0.78rem; color:var(--text-color, #475569); opacity:0.85; margin-top:1px;">AI Confidence: <b>{comp_conf_pct}%</b></div>
+                </div>
+
+                <div style="background:rgba(37,99,235,0.06); border:1px solid rgba(37,99,235,0.20); border-radius:10px; padding:10px 12px;">
+                  <div style="font-size:0.72rem; font-weight:700; text-transform:uppercase; color:#64748b;">📍 Incident Location</div>
+                  <div style="font-size:0.90rem; font-weight:700; color:var(--text-color, #0f172a); margin-top:2px;">{escape(loc_clean)}</div>
+                  <div style="font-size:0.78rem; color:var(--text-color, #475569); opacity:0.85; margin-top:1px;">City Zone</div>
+                </div>
+
+                <div style="background:rgba(37,99,235,0.06); border:1px solid rgba(37,99,235,0.20); border-radius:10px; padding:10px 12px;">
+                  <div style="font-size:0.72rem; font-weight:700; text-transform:uppercase; color:#64748b;">🏛️ Routing Department</div>
+                  <div style="font-size:0.90rem; font-weight:700; color:var(--text-color, #0f172a); margin-top:2px;">{fusion_result['department']}</div>
+                  <div style="font-size:0.78rem; color:#10b981; font-weight:600; margin-top:1px;">Dispatched to Field Crew</div>
+                </div>
+              </div>
+
+              <!-- Registered Description -->
+              <div style="background:rgba(37,99,235,0.06); border:1px solid rgba(37,99,235,0.20); border-left:4px solid #2563eb; border-radius:10px; padding:12px 14px;">
+                <div style="font-size:0.72rem; font-weight:700; text-transform:uppercase; color:#64748b; margin-bottom:4px;">
+                  💬 Registered Citizen Description
+                </div>
+                <div style="font-size:0.90rem; color:var(--text-color, #0f172a); line-height:1.5; word-break:break-word;">
+                  "{escape(final_text)}"
+                </div>
+              </div>
+            </div>
+            """), unsafe_allow_html=True)
 
             st.markdown("#### ⚖️ Multimodal Decision Transparency")
             cv_conf_str = f"{fusion_result['best_cv_conf']:.1%}" if fusion_result.get('best_cv_conf', 0) > 0 else "N/A (Text-Driven)"

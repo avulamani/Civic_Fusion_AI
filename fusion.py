@@ -101,34 +101,27 @@ def build_complaint_card(
     location_name: str,
     confidence_pct: float,
     summary_text: str,
+    ticket_id: str = "",
 ) -> str:
-    """Generate the structured municipal complaint card in ASCII format."""
+    """Generate the structured municipal complaint card in clean text format."""
+    import textwrap
+    header = f"MUNICIPAL COMPLAINT TICKET — {ticket_id}" if ticket_id else "MUNICIPAL COMPLAINT TICKET"
     lines = [
-        "╔══════════════════════════════════════════════════════╗",
-        "║              MUNICIPAL COMPLAINT TICKET              ║",
-        "╠══════════════════════════════════════════════════════╣",
-        f"║ Category: {category_name:<42} ║",
-        f"║ Problem:  {problem_title:<42} ║",
-        f"║ Severity: {severity:<42} ║",
-        f"║ Priority: {priority:<42} ║",
-        f"║ Location: {location_name:<42} ║",
-        "║                                                      ║",
-        f"║ AI Confidence: {confidence_pct:>3.0f}%                                ║",
-        "║                                                      ║",
-        "║ Description:                                         ║",
+        "========================================================",
+        f"               {header.center(40)}",
+        "========================================================",
+        f"  Category:      {category_name}",
+        f"  Problem:       {problem_title}",
+        f"  Severity:      {severity}",
+        f"  Priority:      {priority}",
+        f"  Location:      {location_name}",
+        f"  AI Confidence: {confidence_pct:.0f}%",
+        "--------------------------------------------------------",
+        "  Incident Summary:",
     ]
-    # Word-wrap summary to fit within box width of ~50 chars
-    words = summary_text.split()
-    current_line = "║ "
-    for word in words:
-        if len(current_line) + len(word) + 1 <= 53:
-            current_line += word + " "
-        else:
-            lines.append(f"{current_line:<54} ║")
-            current_line = "║ " + word + " "
-    if current_line.strip() != "║":
-        lines.append(f"{current_line:<54} ║")
-    lines.append("╚══════════════════════════════════════════════════════╝")
+    for w in textwrap.wrap(summary_text, width=52):
+        lines.append(f"  {w}")
+    lines.append("========================================================")
     return "\n".join(lines)
 
 
