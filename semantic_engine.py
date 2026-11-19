@@ -17,8 +17,16 @@ from typing import Any
 import numpy as np
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
-import torch
-from transformers import AutoModel, AutoTokenizer
+
+try:
+    import torch
+    from transformers import AutoModel, AutoTokenizer
+    HAS_TORCH = True
+except (ImportError, Exception):
+    torch = None
+    AutoModel = None
+    AutoTokenizer = None
+    HAS_TORCH = False
 
 ROOT = Path(__file__).parent
 MODELS_DIR = ROOT / "models" / "semantic"
@@ -34,7 +42,7 @@ class SemanticIntelligenceEngine:
 
     def __init__(self, model_name: str = MODEL_NAME, device: str = "cpu"):
         self.model_name = model_name
-        self.device = torch.device(device)
+        self.device = torch.device(device) if (HAS_TORCH and torch is not None) else "cpu"
         self.tokenizer = None
         self.model = None
         self.is_loaded = False
@@ -50,6 +58,8 @@ class SemanticIntelligenceEngine:
 
     def load_model(self) -> bool:
         """Lazy load the LaBSE tokenizer and transformer model."""
+        if not HAS_TORCH or AutoTokenizer is None or AutoModel is None:
+            return False
         if self.is_loaded:
             return True
 
@@ -75,6 +85,9 @@ class SemanticIntelligenceEngine:
 
         if clean_text in self._embedding_cache:
             return self._embedding_cache[clean_text]
+
+        if not HAS_TORCH or torch is None:
+            return None
 
         if not self.is_loaded and not self.load_model():
             return None

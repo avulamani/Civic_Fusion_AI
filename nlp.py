@@ -21,9 +21,18 @@ import pandas as pd
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.linear_model import LogisticRegression
 from sklearn.pipeline import Pipeline
-import torch
-import torch.nn as nn
-from transformers import AutoModel, AutoTokenizer
+
+try:
+    import torch
+    import torch.nn as nn
+    from transformers import AutoModel, AutoTokenizer
+    HAS_TORCH = True
+except (ImportError, Exception):
+    torch = None
+    nn = None
+    AutoModel = None
+    AutoTokenizer = None
+    HAS_TORCH = False
 
 from multilingual import (
     detect_language,
@@ -60,28 +69,32 @@ CAT2IDX = {c: i for i, c in enumerate(CATEGORIES)}
 IDX2CAT = {i: c for i, c in enumerate(CATEGORIES)}
 
 
-class IndicBERTClassifier(nn.Module):
-    def __init__(self, encoder, num_classes: int = 11, hidden_dim: int = 768):
-        super().__init__()
-        self.encoder = encoder
-        self.dropout = nn.Dropout(0.2)
-        self.classifier = nn.Sequential(
-            nn.Linear(hidden_dim, 256),
-            nn.GELU(),
-            nn.Dropout(0.2),
-            nn.Linear(256, num_classes),
-        )
+if HAS_TORCH and nn is not None:
+    class IndicBERTClassifier(nn.Module):
+        def __init__(self, encoder, num_classes: int = 11, hidden_dim: int = 768):
+            super().__init__()
+            self.encoder = encoder
+            self.dropout = nn.Dropout(0.2)
+            self.classifier = nn.Sequential(
+                nn.Linear(hidden_dim, 256),
+                nn.GELU(),
+                nn.Dropout(0.2),
+                nn.Linear(256, num_classes),
+            )
 
-    def forward(self, input_ids, attention_mask):
-        outputs = self.encoder(input_ids=input_ids, attention_mask=attention_mask)
-        token_embeddings = outputs.last_hidden_state
-        input_mask_expanded = attention_mask.unsqueeze(-1).expand(token_embeddings.size()).float()
-        sum_embeddings = torch.sum(token_embeddings * input_mask_expanded, 1)
-        sum_mask = torch.clamp(input_mask_expanded.sum(1), min=1e-9)
-        pooled = sum_embeddings / sum_mask
-        pooled = self.dropout(pooled)
-        logits = self.classifier(pooled)
-        return logits
+        def forward(self, input_ids, attention_mask):
+            outputs = self.encoder(input_ids=input_ids, attention_mask=attention_mask)
+            token_embeddings = outputs.last_hidden_state
+            input_mask_expanded = attention_mask.unsqueeze(-1).expand(token_embeddings.size()).float()
+            sum_embeddings = torch.sum(token_embeddings * input_mask_expanded, 1)
+            sum_mask = torch.clamp(input_mask_expanded.sum(1), min=1e-9)
+            pooled = sum_embeddings / sum_mask
+            pooled = self.dropout(pooled)
+            logits = self.classifier(pooled)
+            return logits
+else:
+    class IndicBERTClassifier:
+        pass
 
 
 _INDICBERT_MODEL = None
@@ -91,6 +104,9 @@ _INDICBERT_TOKENIZER = None
 def get_indicbert_model():
     """Lazy load the fine-tuned IndicBERT classifier."""
     global _INDICBERT_MODEL, _INDICBERT_TOKENIZER
+    if not HAS_TORCH or torch is None or AutoTokenizer is None:
+        return None, None
+
     if _INDICBERT_MODEL is not None:
         return _INDICBERT_MODEL, _INDICBERT_TOKENIZER
 
