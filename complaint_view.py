@@ -126,16 +126,25 @@ def prepare_complaint_data(complaint: dict[str, Any]) -> dict[str, Any]:
         reports_count = 1
 
     photo_path = complaint.get("photo_path")
+    if photo_path:
+        photo_path = str(photo_path).replace("\\", "/")
     if not photo_path:
         check_p = Path("data/uploads") / f"{raw_id}.jpg"
         if check_p.exists():
-            photo_path = str(check_p)
+            photo_path = str(check_p).replace("\\", "/")
 
     annotated_path = complaint.get("annotated_photo_path")
+    if annotated_path:
+        annotated_path = str(annotated_path).replace("\\", "/")
     if not annotated_path:
         check_ann = Path("data/uploads") / f"{raw_id}_annotated.jpg"
         if check_ann.exists():
-            annotated_path = str(check_ann)
+            annotated_path = str(check_ann).replace("\\", "/")
+
+    photo_url = complaint.get("photo_url")
+    annotated_url = complaint.get("annotated_photo_url")
+    photo_b64 = complaint.get("photo_base64")
+    annotated_b64 = complaint.get("annotated_photo_base64")
 
     detections = complaint.get("detections")
     if detections is None:
@@ -180,6 +189,10 @@ def prepare_complaint_data(complaint: dict[str, Any]) -> dict[str, Any]:
         "citizen_reports_count": reports_count,
         "photo_path": photo_path,
         "annotated_photo_path": annotated_path,
+        "photo_url": photo_url,
+        "annotated_photo_url": annotated_url,
+        "photo_base64": photo_b64,
+        "annotated_photo_base64": annotated_b64,
         "detections": detections,
         "model_version": model_version,
         "needs_review": bool(complaint.get("needs_review", False)),
@@ -412,23 +425,25 @@ def render_complaint_media_and_detections(complaint: dict[str, Any], is_officer:
     - Displays polite, informative feedback when no objects exceed the threshold.
     """
     data = prepare_complaint_data(complaint)
-    photo_path = data["photo_path"]
-    annotated_path = data["annotated_photo_path"]
     detections = data["detections"]
     cid = data["id"]
 
-    if not photo_path or not Path(photo_path).exists():
+    import cloud_storage
+    orig_img = cloud_storage.load_pil_image_from_complaint(complaint, is_annotated=False)
+
+    if orig_img is None:
         if is_officer:
             st.info("ℹ️ No photographic evidence attached to this ticket.")
         return
 
     st.markdown("#### 📷 Photographic Evidence & YOLO AI Vision Analysis")
 
+    ann_img = cloud_storage.load_pil_image_from_complaint(complaint, is_annotated=True)
+
     # If annotated image is missing or detections not cached, perform lazy inference once
-    if (not annotated_path or not Path(annotated_path).exists()) and not detections:
+    if ann_img is None and not detections:
         try:
-            raw_img = Image.open(photo_path)
-            new_dets, _ = vision.detect(raw_img)
+            new_dets, _ = vision.detect(orig_img)
             detections = [
                 {
                     "class_name": d["class"],
@@ -442,11 +457,14 @@ def render_complaint_media_and_detections(complaint: dict[str, Any], is_officer:
             complaint["detections"] = detections
             data["detections"] = detections
             if detections:
-                ann_file = Path("data/uploads") / f"{cid}_annotated.jpg"
-                vision.save_annotated_image(raw_img, new_dets, ann_file)
-                annotated_path = str(ann_file)
-                complaint["annotated_photo_path"] = annotated_path
-                data["annotated_photo_path"] = annotated_path
+                ann_img = vision.draw_detections(orig_img.copy(), new_dets)
+                stored_ann = cloud_storage.store_complaint_image(ann_img, cid, is_annotated=True)
+                if stored_ann.get("url"):
+                    complaint["annotated_photo_url"] = stored_ann["url"]
+                if stored_ann.get("path"):
+                    complaint["annotated_photo_path"] = stored_ann["path"]
+                if stored_ann.get("base64"):
+                    complaint["annotated_photo_base64"] = stored_ann["base64"]
         except Exception as exc:
             st.warning(f"Note: Could not run vision analysis on image: {exc}")
 
@@ -455,16 +473,20 @@ def render_complaint_media_and_detections(complaint: dict[str, Any], is_officer:
 
     with col_orig:
         try:
-            orig_img = Image.open(photo_path)
-            st.image(orig_img, caption=f"Original Photographic Evidence (Ticket {cid})", use_container_width=True)
-        except Exception:
-            st.error(f"Could not load original image from {photo_path}")
+            caption_text = f"Original Photographic Evidence (Ticket {cid})"
+            st.image(orig_img, caption=caption_text, use_container_width=True)
+            if complaint.get("photo_url"):
+                st.caption(f"🌐 [Open Original in Cloud CDN]({complaint['photo_url']})")
+        except Exception as exc:
+            st.error(f"Could not load original image: {exc}")
 
     with col_ann:
-        if annotated_path and Path(annotated_path).exists():
+        if ann_img is not None:
             try:
-                ann_img = Image.open(annotated_path)
-                st.image(ann_img, caption=f"YOLO Detected Objects & Bounding Boxes ({data['model_version']})", use_container_width=True)
+                caption_text = f"YOLO Detected Objects & Bounding Boxes ({data['model_version']})"
+                st.image(ann_img, caption=caption_text, use_container_width=True)
+                if complaint.get("annotated_photo_url"):
+                    st.caption(f"🌐 [Open Annotated in Cloud CDN]({complaint['annotated_photo_url']})")
             except Exception:
                 st.info("ℹ️ Annotated image preview unavailable.")
         else:

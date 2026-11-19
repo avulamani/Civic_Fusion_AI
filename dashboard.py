@@ -1689,19 +1689,29 @@ def show_citizen_intake():
                     
                     photo_file_path = None
                     annotated_file_path = None
+                    photo_url = None
+                    annotated_photo_url = None
+                    photo_base64 = None
+                    annotated_photo_base64 = None
+
                     if uploaded_image is not None:
-                        upload_dir = Path("data/uploads")
-                        upload_dir.mkdir(parents=True, exist_ok=True)
-                        target_img = upload_dir / f"{new_id}.jpg"
+                        import cloud_storage
                         try:
-                            uploaded_image.save(target_img, "JPEG")
-                            photo_file_path = str(target_img)
+                            # 1. Store original photo (ImgBB CDN + Base64 in-record + POSIX normalized path)
+                            orig_res = cloud_storage.store_complaint_image(uploaded_image, new_id, is_annotated=False)
+                            photo_url = orig_res.get("url")
+                            photo_file_path = orig_res.get("path")
+                            photo_base64 = orig_res.get("base64")
+
+                            # 2. Store YOLO annotated photo if detections exist
                             if detections:
-                                ann_img = upload_dir / f"{new_id}_annotated.jpg"
-                                vision.save_annotated_image(uploaded_image, detections, ann_img)
-                                annotated_file_path = str(ann_img)
-                        except Exception:
-                            photo_file_path = None
+                                ann_img = vision.draw_detections(uploaded_image.copy(), detections)
+                                ann_res = cloud_storage.store_complaint_image(ann_img, new_id, is_annotated=True)
+                                annotated_photo_url = ann_res.get("url")
+                                annotated_file_path = ann_res.get("path")
+                                annotated_photo_base64 = ann_res.get("base64")
+                        except Exception as exc:
+                            print(f"[Storage Warning] Could not process images: {exc}")
 
                     city_for_entry = "City Zone"
 
@@ -1731,6 +1741,10 @@ def show_citizen_intake():
                         "reported_date": date.today().isoformat(),
                         "photo_path": photo_file_path,
                         "annotated_photo_path": annotated_file_path,
+                        "photo_url": photo_url,
+                        "annotated_photo_url": annotated_photo_url,
+                        "photo_base64": photo_base64,
+                        "annotated_photo_base64": annotated_photo_base64,
                         "detections": [
                             {
                                 "class_name": d["class"],
@@ -1955,10 +1969,21 @@ def show_citizen_intake():
 # ==========================================
 def show_municipal_dashboard():
     st.markdown('<div id="municipal-top-anchor"></div>', unsafe_allow_html=True)
-    st.title("🏛️ Municipal Official Command Center")
-    st.caption("AI-Powered Urban Complaint Management, Dispatcher & GIS Geographic Triage")
 
-    complaints = st.session_state["complaints"]
+    col_t1, col_t2 = st.columns([3, 1])
+    with col_t1:
+        st.title("🏛️ Municipal Official Command Center")
+        st.caption("AI-Powered Urban Complaint Management, Dispatcher & GIS Geographic Triage")
+    with col_t2:
+        st.markdown("<div style='height: 16px;'></div>", unsafe_allow_html=True)
+        if st.button("🔄 Refresh Live Complaints", type="secondary", use_container_width=True, help="Reload latest complaint tickets submitted across all users"):
+            st.session_state["complaints"] = load_all_complaints()
+            st.rerun()
+
+    # Guarantee complaints are always freshly synced from storage across users
+    fresh_complaints = load_all_complaints()
+    st.session_state["complaints"] = fresh_complaints
+    complaints = fresh_complaints
     df = pd.DataFrame(complaints)
 
     # Top Section Switcher Navigation
@@ -2547,7 +2572,8 @@ def show_track_complaint():
             return
 
         ticket_id = ticket_input.strip().upper()
-        complaints = st.session_state.get("complaints", [])
+        complaints = load_all_complaints()
+        st.session_state["complaints"] = complaints
         found = next((c for c in complaints if str(c.get("id", "")).strip().upper() == ticket_id), None)
 
         if found is None:
@@ -2590,6 +2616,24 @@ with st.sidebar:
         st.caption("🌐 Citizen Portal")
         nav = st.radio("", citizen_pages + officer_pages, key="nav_radio_officer",
                        label_visibility="collapsed")
+
+        import cloud_storage
+        with st.expander("☁️ Cloud Storage (ImgBB)", expanded=False):
+            active_k = cloud_storage.get_active_imgbb_key()
+            if active_k:
+                st.success("🟢 ImgBB CDN Connected")
+                st.caption(f"API Key: `{active_k[:4]}...{active_k[-4:]}`")
+            else:
+                st.info("🟡 In-record & local storage active. Enter free key from api.imgbb.com to host on Cloud CDN.")
+            override_key = st.text_input(
+                "ImgBB API Key:",
+                value=st.session_state.get("imgbb_api_key_override", ""),
+                type="password",
+                help="Enter free API key from api.imgbb.com to host images on Cloud CDN."
+            )
+            if override_key and override_key != st.session_state.get("imgbb_api_key_override", ""):
+                st.session_state["imgbb_api_key_override"] = override_key
+                st.rerun()
     else:
         st.markdown('<div class="role-badge-citizen">👤 Citizen</div>', unsafe_allow_html=True)
         st.divider()

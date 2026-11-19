@@ -226,8 +226,14 @@ def load_all_complaints() -> list[dict[str, Any]]:
 
 
 def save_all_complaints(complaints: list[dict[str, Any]]) -> None:
-    """Save full complaint list to disk and synchronize root complaints.json."""
+    """Save full complaint list to disk and synchronize root complaints.json with normalized paths."""
     try:
+        # Guarantee cross-platform POSIX forward slashes for Linux cloud hosting
+        for c in complaints:
+            if c.get("photo_path"):
+                c["photo_path"] = str(c["photo_path"]).replace("\\", "/")
+            if c.get("annotated_photo_path"):
+                c["annotated_photo_path"] = str(c["annotated_photo_path"]).replace("\\", "/")
         DB_FILE.parent.mkdir(parents=True, exist_ok=True)
         content = json.dumps(complaints, indent=2, ensure_ascii=False)
         DB_FILE.write_text(content, encoding="utf-8")

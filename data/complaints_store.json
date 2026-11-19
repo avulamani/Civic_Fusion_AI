@@ -23,8 +23,8 @@
     "ai_confidence": 0.99,
     "needs_review": false,
     "reported_date": "2026-11-19",
-    "photo_path": "data\\uploads\\CF-1065.jpg",
-    "annotated_photo_path": "data\\uploads\\CF-1065_annotated.jpg",
+    "photo_path": "data/uploads/CF-1065.jpg",
+    "annotated_photo_path": "data/uploads/CF-1065_annotated.jpg",
     "detections": [
       {
         "class_name": "pothole",
@@ -65,8 +65,8 @@
     "ai_confidence": 0.87,
     "needs_review": false,
     "reported_date": "2026-11-19",
-    "photo_path": "data\\uploads\\CF-1064.jpg",
-    "annotated_photo_path": "data\\uploads\\CF-1064_annotated.jpg",
+    "photo_path": "data/uploads/CF-1064.jpg",
+    "annotated_photo_path": "data/uploads/CF-1064_annotated.jpg",
     "detections": [
       {
         "class_name": "garbage",
@@ -107,8 +107,8 @@
     "ai_confidence": 0.99,
     "needs_review": false,
     "reported_date": "2026-11-19",
-    "photo_path": "data\\uploads\\CF-1063.jpg",
-    "annotated_photo_path": "data\\uploads\\CF-1063_annotated.jpg",
+    "photo_path": "data/uploads/CF-1063.jpg",
+    "annotated_photo_path": "data/uploads/CF-1063_annotated.jpg",
     "detections": [
       {
         "class_name": "garbage",
@@ -149,8 +149,8 @@
     "ai_confidence": 0.99,
     "needs_review": false,
     "reported_date": "2026-11-19",
-    "photo_path": "data\\uploads\\CF-1062.jpg",
-    "annotated_photo_path": "data\\uploads\\CF-1062_annotated.jpg",
+    "photo_path": "data/uploads/CF-1062.jpg",
+    "annotated_photo_path": "data/uploads/CF-1062_annotated.jpg",
     "detections": [
       {
         "class_name": "pothole",
@@ -191,8 +191,8 @@
     "ai_confidence": 0.99,
     "needs_review": false,
     "reported_date": "2026-11-19",
-    "photo_path": "data\\uploads\\CF-1060.jpg",
-    "annotated_photo_path": "data\\uploads\\CF-1060_annotated.jpg",
+    "photo_path": "data/uploads/CF-1060.jpg",
+    "annotated_photo_path": "data/uploads/CF-1060_annotated.jpg",
     "detections": [
       {
         "class_name": "pothole",
